@@ -4,23 +4,148 @@
 <head>
     <title>Exeter University Map</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOGfMmmaQuKSGguV1f_uhdBPURszjc7AU"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'map/styles.css' %}"> <!-- Include your CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'map/styles/styles.css' %}"> <!-- Include your CSS file -->
 </head>
 <body>
+    <div id="text-container">
+        <h1>Places Discovered</h1>
+        <hr class="separator">
+        <div class="rows">
+            <div class="image-column">
+                <p><img src="{% static 'map/images/checked.png' %}" alt="Image"></p>
+                <p><img src="{% static 'map/images/checked.png' %}" alt="Image"></p>
+            </div>
+            <div class="text-column">
+                <p>Reed Pond</p>
+                <p>CREWW Building</p>
+            </div>
+            <div class="points-column">
+                <p>60pts</p>
+                <p>30pts</p>
+            </div>
+        </div>
+        <!-- Add more content here as needed -->
+    </div>
     <div id="map-container">
         <div id="map"></div>
     </div>
+    
     <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 50.73731688079953, lng: -3.534997163291077},
-                zoom: 16,
-                mapTypeId: 'satellite'
-            });
-            map.setTilt(0);
-            
+    function initMap() {
+        var initialZoom = 16.5;
+        var minZoom = 16.5; // Set your minimum zoom level
+        var maxZoom = 18.5;
+        var bounds = {
+            north: 50.73731688079953 + 0.005, // Set the northern latitude boundary
+            south: 50.73731688079953 - 0.01, // Set the southern latitude boundary
+            east: -3.534997163291077 + 0.01, // Set the eastern longitude boundary
+            west: -3.534997163291077 - 0.01 // Set the western longitude boundary
+        };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 50.73731688079953, lng: -3.534997163291077},
+        mapTypeId: 'satellite',
+        zoom: initialZoom,
+        minZoom: minZoom,
+        maxZoom: maxZoom,
+        restriction: {
+            latLngBounds: bounds,
+            strictBounds: false
         }
-        initMap();  // Call the function to initialize the map
+    });
+    map.setTilt(0);
+
+    // Define the button icon image
+    var w = "{% static 'map/images/question.png' %}";
+
+    // Define the reference physical area covered by the marker (e.g., 10 square meters)
+    var referenceMarkerAreaMeters = 10000;
+
+    // Calculate the initial pixel size of the marker based on the reference area and the map's initial zoom level
+    var initialMarkerSize = calculateMarkerSize(referenceMarkerAreaMeters, map.getZoom());
+
+    // Define the marker variable outside the loop
+    var markers = [];
+
+    var buttons = [
+        {
+            position: {lat: 50.73915117392608, lng: -3.5321559167578185},
+            name: 'Solar Panels',
+            points: '40pts',
+            iconUrl: "{% static 'map/images/question.png' %}"
+        },
+        {
+            position: {lat: 50.73790624788057, lng: -3.5348910304944403},
+            name: 'Greenhouse',
+            points: '20pts',
+            iconUrl: "{% static 'map/images/question.png' %}"
+        },
+        {
+            position: {lat: 50.734110964281584, lng: -3.5374968901137898},
+            name: 'Reed Pond',
+            points: '60pts',
+            iconUrl: "{% static 'map/images/tick.png' %}"
+        },
+        {
+            position: {lat: 50.73676120857282, lng: -3.532655722516526},
+            name: 'CREWW Building',
+            points: '30pts',
+            iconUrl: "{% static 'map/images/tick.png' %}"
+        },
+        // add more
+    ];
+
+    // Create and display buttons on the map
+    buttons.forEach(function(button) {
+        var marker = new google.maps.Marker({
+            position: button.position,
+            map: map,
+            icon: {
+                url: button.iconUrl,
+                scaledSize: new google.maps.Size(initialMarkerSize, initialMarkerSize)
+            }
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: '<h3>' + button.name + '</h3><p>' + button.points + '</p>'
+        });
+
+        marker.addListener('mouseover', function() {
+            infowindow.open(map, marker);
+        });
+
+        marker.addListener('mouseout', function() {
+            infowindow.close();
+        });
+        markers.push(marker);
+    });
+
+    map.addListener('zoom_changed', function() {
+        var currentZoom = map.getZoom();
+        var newMarkerSize = calculateMarkerSize(referenceMarkerAreaMeters, currentZoom);
+        markers.forEach(function(marker, index) {
+            var button = buttons[index];
+            marker.setIcon({
+                url: button.iconUrl,
+                scaledSize: new google.maps.Size(newMarkerSize, newMarkerSize),
+                anchor: new google.maps.Point(newMarkerSize / 2, newMarkerSize / 2) 
+        });
+    });
+    });
+}
+
+// Function to calculate marker size based on reference area and zoom level
+function calculateMarkerSize(referenceAreaMeters, zoom) {
+    // Assuming a constant reference area for simplicity
+    var earthCircumferenceMeters = 40075016.686;
+    var metersPerPixel = earthCircumferenceMeters / (256 * Math.pow(2, zoom));
+    var pixelSize = Math.sqrt(referenceAreaMeters / metersPerPixel);
+    return pixelSize;
+}
+
+initMap();  // Call the function to initialize the map
+
+
     </script>
 </body>
 </html>
