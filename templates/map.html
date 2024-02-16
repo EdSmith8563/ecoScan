@@ -4,11 +4,30 @@
 <head>
     <title>Exeter University Map</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOGfMmmaQuKSGguV1f_uhdBPURszjc7AU"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'map/styles/styles.css' %}"> <!-- Include your CSS file -->
 </head>
 <body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top cut-off-left"> <!-- Add "fixed-top" class -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/map">Map <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div id="text-container">
-        <h1>Places Discovered</h1>
+        <h1 style="font-weight: bold; font-size: 150%;">Places Discovered</h1>
         <hr class="separator">
         <div class="rows">
             <div class="image-column">
@@ -26,11 +45,17 @@
         </div>
         <!-- Add more content here as needed -->
     </div>
+    <button id="menu" class="menu" onClick="toggleNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
     <div id="map-container">
         <div id="map"></div>
+        
     </div>
     
     <script>
+    function toggleNavbar() {
+            var navbarCollapse = document.querySelector(".navbar-collapse");
+            navbarCollapse.classList.toggle("show");
+        }
     function initMap() {
         var initialZoom = 16.5;
         var minZoom = 16.5; // Set your minimum zoom level
@@ -56,7 +81,7 @@
     map.setTilt(0);
 
     // Define the button icon image
-    var w = "{% static 'map/images/question.png' %}";
+    var iconBase = "{% static 'map/images/question.png' %}";
 
     // Define the reference physical area covered by the marker (e.g., 10 square meters)
     var referenceMarkerAreaMeters = 10000;
@@ -144,7 +169,6 @@ function calculateMarkerSize(referenceAreaMeters, zoom) {
 }
 
 initMap();  // Call the function to initialize the map
-
 
     </script>
 </body>
