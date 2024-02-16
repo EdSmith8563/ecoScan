@@ -11,7 +11,7 @@ body {
 .welcome-text {
     font-size: 3rem; /* Set font size to 3rem (adjust as needed) */
     text-align: center; /* Center the text */
-    margin-bottom: 30px; /* Add some margin to the bottom */
+    margin-bottom: 0.5%;
 }
 
 /* Navbar */
@@ -22,7 +22,7 @@ body {
     position: fixed; /* Fix the position to prevent pushing the map */
     top: 2%; /* Align to the top */
     left: 0; /* Align to the left */
-    width: 25%;
+    width: 100vw;
     height: 100vh; /* Fill the entire viewport height */
     padding: 0;
     color: white;
@@ -47,4 +47,65 @@ body {
 @keyframes flowing {
     0% { background-position: 0% 0; }
     100% { background-position: 200% 0; }
+}
+.table-container {
+    margin-top: 20px; /* Add some margin between the separator and the table */
+    padding: 0 20px; /* Add padding to the table container */
+    overflow-y: auto; /* Add horizontal scroll if needed */
+}
+
+.table {
+    position: relative; /* Add position relative to contain pseudo-elements */
+    width: 100%; /* Make the table fill the container */
+    background: linear-gradient(0deg, #000, #272727);
+}
+
+/* Center-align text in table cells */
+.table td {
+    border-radius: 4px;
+    color: rgb(227, 227, 227);
+    text-align: center;
+    vertical-align: middle;
+    text-shadow: 0 1px 0 #000;
+    font-size: large;
+}
+
+.table th {
+    border-radius: 4px;
+    color: rgb(227, 227, 227);
+    text-align: center;
+    vertical-align: middle;
+    text-shadow: 0 1px 0 #000;
+    font-size: large;
+}
+
+.table:before,
+.table:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, #00027a, #0004ff, #00ebfc, #0004ff, #00027a, #0004ff, #00ebfc, #0004ff, #00027a, #0004ff);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 40s linear infinite;
+    border-radius: 6px; /* Adjust border-radius for desired thickness */
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.table:after {
+    filter: blur(20px); /* Adjust blur value for the desired effect */
 }
