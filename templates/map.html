@@ -5,7 +5,7 @@
     <title>Exeter University Map</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOGfMmmaQuKSGguV1f_uhdBPURszjc7AU"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'map/styles/styles.css' %}"> <!-- Include your CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'map/styles/mapStyles.css' %}"> 
 </head>
 <body>
     <header>
@@ -45,17 +45,29 @@
         </div>
         <!-- Add more content here as needed -->
     </div>
-    <button id="menu" class="menu" onClick="toggleNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
+    <button id="menu-icon" class="menu-icon" onmouseover="showNavbar()" onmouseout="hideNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
     <div id="map-container">
         <div id="map"></div>
-        
     </div>
     
     <script>
-    function toggleNavbar() {
-            var navbarCollapse = document.querySelector(".navbar-collapse");
-            navbarCollapse.classList.toggle("show");
-        }
+    function showNavbar() {
+    var navbar = document.querySelector('.navbar');
+    navbar.classList.add("navbar-show");
+
+    var menuIcon = document.getElementById("menu-icon");
+    menuIcon.style.visibility = "hidden"; 
+    setTimeout(function() {
+        menuIcon.style.visibility = "visible"; // Show the menu-icon again after 3 seconds
+    }, 2000);
+}
+
+function hideNavbar() {
+    var navbar = document.querySelector('.navbar');
+    setTimeout(function() {
+        navbar.classList.remove("navbar-show");
+    }, 2000);
+}
     function initMap() {
         var initialZoom = 16.5;
         var minZoom = 16.5; // Set your minimum zoom level
@@ -76,7 +88,9 @@
         restriction: {
             latLngBounds: bounds,
             strictBounds: false
-        }
+        },
+        mapTypeControl: false, // Disable the map type control
+        fullscreenControl: false,
     });
     map.setTilt(0);
 
@@ -169,7 +183,8 @@ function calculateMarkerSize(referenceAreaMeters, zoom) {
 }
 
 initMap();  // Call the function to initialize the map
-
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

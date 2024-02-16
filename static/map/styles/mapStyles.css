@@ -9,17 +9,29 @@ body, html, nav, .navbar-brand, .navbar-nav, .nav-link, .container, h1, h2, h3, 
 .navbar.cut-off-left {
     margin-left: 25%; /* Adjust the value as needed */
 }
+.navbar {
+    visibility: hidden; /* Initially hide the navbar */
+    opacity: 0; /* Initially set opacity to 0 */
+    transition: visibility 0.5s, opacity 0.5s; /* Smooth transition effect for visibility and opacity */
+}
 
-.menu img{
+.navbar-show {
+    visibility: visible; /* Show the navbar */
+    opacity: 1; /* Set opacity to 1 to make it fully visible */
+}
+
+#menu-icon img{
     width: 50px;
     height:50px;
 }
-#menu {
+
+#menu-icon {
     background: none;
     border: none;
     position: absolute;
-    top: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
+    vertical-align: middle;
+    top: 0; /* Adjust as needed */
+    right: 0; /* Adjust as needed */
     z-index: 9999; /* Ensure the button is above other elements */
 }
 
