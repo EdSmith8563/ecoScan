@@ -84,6 +84,16 @@
                         <tbody>
                             <!-- Add your table rows here -->
                             <tr>
+                                <td>Sholto Bayley</td>
+                                <td>5</td>
+                                <td>110</td>
+                            </tr>
+                            <tr>
+                                <td>You</td>
+                                <td>2</td>
+                                <td>90</td>
+                            </tr>
+                            <tr>
                                 <td>Nathan De Beer</td>
                                 <td>4</td>
                                 <td>80</td>
@@ -112,10 +122,22 @@
 
         </div>
     </main>
-
     <!-- Bootstrap JS (optional, only if you need Bootstrap JavaScript components) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Loop through each row in the table
+            $('tbody tr').each(function(){
+                // Check if any cell in the row contains the text 'You'
+                if ($(this).find('td:contains("You")').length > 0) {
+                    console.log("hello");
+                    // Add a class to the row to change its color
+                    $(this).addClass('lighter-row');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

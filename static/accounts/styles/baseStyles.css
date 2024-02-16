@@ -78,6 +78,9 @@ body {
     text-shadow: 0 1px 0 #000;
     font-size: large;
 }
+.lighter-row td {
+    background-color: #323232; /* Define the lighter color for the cells */
+}
 
 .table:before,
 .table:after {
