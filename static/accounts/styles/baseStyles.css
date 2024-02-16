@@ -109,3 +109,11 @@ body {
 .table:after {
     filter: blur(20px); /* Adjust blur value for the desired effect */
 }
+/* CSS for the phone icon */
+.phone-icon {
+    width: 30px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 0px; /* Adjust spacing between the icon and the text */
+
+}
+
