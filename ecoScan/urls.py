@@ -24,4 +24,5 @@ urlpatterns = [
     path('map/', views.map_view, name='map'),
     path("accounts/", include("accounts.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    path('camera/', include('camera.urls')),
 ]

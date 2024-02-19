@@ -1,0 +1,22 @@
+
+html, body {
+    background-color: #272727;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#video-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+#video-element {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

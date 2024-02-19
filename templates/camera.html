@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Camera Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'camera/styles/cameraStyles.css' %}">
+</head>
+<body>
+    <div id="video-container">
+        <video id="video-element" autoplay></video>
+    </div>
+
+    <script>
+        // JavaScript code to access the camera and capture media
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                var videoElement = document.getElementById('video-element');
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.error('Error accessing the camera:', error);
+            });
+    </script>
+</body>
+</html>
