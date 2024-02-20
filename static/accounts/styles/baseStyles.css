@@ -120,3 +120,37 @@ body {
 
 }
 
+/* Dark mode styles */
+.dark-mode {
+    background-color: #121212; /* Dark background for dark mode */
+    color: #ffffff; /* Light text for dark mode */
+}
+
+.dark-mode .navbar {
+    background-color: #272727; /* Darker navbar for dark mode */
+}
+
+.dark-mode .table {
+    background-color: #333; /* Darker table background for dark mode */
+}
+
+/* Light mode styles */
+.light-mode {
+    background-color: #ffffff; /* Light background for light mode */
+    color: #000000; /* Dark text for light mode */
+}
+
+.light-mode .navbar {
+    background-color: #f8f9fa; /* Lighter navbar for light mode */
+}
+
+.light-mode .table {
+    background-color: #ffffff; /* Lighter table background for light mode */
+    color: #000000; /* Dark text for light mode */
+}
+
+/* You might also want to add specific styles for other text elements to ensure they are visible in light mode */
+.light-mode .nav-link,
+.light-mode .dropdown-item {
+    color: #000000;
+}
