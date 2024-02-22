@@ -204,3 +204,7 @@ body {
     font-size: 0.75rem; /* Adjust font size as needed */
     white-space: normal; /* Ensure the text wraps and doesn't overflow */
 }
+
+.form-text ul {
+    list-style-type: none;
+}
