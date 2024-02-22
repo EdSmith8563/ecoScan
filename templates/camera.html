@@ -9,6 +9,46 @@
     <link rel="stylesheet" type="text/css" href="{% static 'camera/styles/cameraStyles.css' %}">
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top cut-off-left"> <!-- Add "fixed-top" class -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/camera">Camera<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/map">Map</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownSettings">
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="themeSwitch" checked>
+                                    <label class="custom-control-label" for="themeSwitch">Theme</label>
+                                </div>                                
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            {% if user.is_authenticated %}
+                                <form action="{% url 'logout' %}" method="post" class="px-4 py-3">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-block">Log Out</button>
+                                </form>                                
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+                                <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                            {% endif %}
+                        </div>
+                    </li>  
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div id="video-container">
         <video id="video-element" autoplay></video>
     </div>

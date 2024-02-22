@@ -68,7 +68,7 @@
         </div>
         <!-- Add more content here as needed -->
     </div>
-    <button id="menu-icon" class="menu-icon" onmouseover="showNavbar()" onmouseout="hideNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
+    <button id="menu-icon" class="menu-icon" onclick="showNavbar()" onmouseover="showNavbar()" onmouseout="hideNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
     <div id="map-container">
         <div id="map"></div>
     </div>
@@ -82,14 +82,14 @@
     menuIcon.style.visibility = "hidden"; 
     setTimeout(function() {
         menuIcon.style.visibility = "visible"; // Show the menu-icon again after 3 seconds
-    }, 2000);
+    }, 3000);
 }
 
 function hideNavbar() {
     var navbar = document.querySelector('.navbar');
     setTimeout(function() {
         navbar.classList.remove("navbar-show");
-    }, 2000);
+    }, 3000);
 }
     function initMap() {
         var initialZoom = 16.5;
