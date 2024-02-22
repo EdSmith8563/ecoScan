@@ -1,4 +1,6 @@
 /* Reset default margin and padding */
+
+
 body, html {
     margin: 0;
     padding: 0;
@@ -21,8 +23,8 @@ body, html, nav, .navbar-brand, .navbar-nav, .nav-link, .container, h1, h2, h3, 
 }
 
 #menu-icon img{
-    width: 50px;
-    height:50px;
+    width: auto;
+    height:5vh;
 }
 
 #menu-icon {
@@ -131,7 +133,10 @@ body {
 /* Settings Dropdown Menu Styles */
 .dropdown-menu {
     background-color: #272727;
+    border-color: #fff;
+    border-radius: 2px;
     color: #fff;
+    box-shadow: 0px 0px 15px white;
 }
 
 .dropdown-menu .dropdown-item {
@@ -192,9 +197,20 @@ body {
 .light-mode .dropdown-menu {
     background-color: #ffffff; /* Light background for light mode */
     color: #000000; /* Dark text for light mode */
+    border-color: #000000;
+    border-radius: 2px;
+    box-shadow: 0px 0px 15px rgb(0, 0, 0);
 }
 
 .light-mode .nav-link,
 .light-mode .dropdown-item {
     color: #000000;
+}
+@media (max-width: 768px) {
+    #text-container {
+        display: none;
+    }
+    #map-container {
+        width: 100vw;     
+    }
 }
