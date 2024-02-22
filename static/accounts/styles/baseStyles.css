@@ -190,3 +190,39 @@ body {
     border-radius: 2px;
     box-shadow: 0px 0px 15px rgb(0, 0, 0);
 }
+
+/* Form Styles */
+/* Hover and active animation for the button */
+.btn-animate {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-animate:hover {
+    background-color: #0056b3; /* Darker shade when hovered */
+    transform: translateY(-3px); /* Slight move up */
+}
+
+.btn-animate:active {
+    background-color: #004080; /* Even darker shade when pressed */
+    transform: translateY(1px); /* Slight move down */
+}
+
+/* Add some space between form elements */
+.form-group.mb-2 {
+    margin-bottom: 0.5rem !important; /* Less space between inputs */
+}
+
+.form-group.mt-3 {
+    margin-top: 1rem !important; /* More space above the button */
+}
+
+/* Reduce the size of the help text */
+.form-text {
+    width: 100%; /* Ensures the text takes the full width of its parent */
+    font-size: 0.75rem; /* Adjust font size as needed */
+    white-space: normal; /* Ensure the text wraps and doesn't overflow */
+}
+
+.form-text ul {
+    list-style-type: none;
+}
