@@ -225,9 +225,11 @@ initMap();  // Call the function to initialize the map
             $('#themeSwitch').on('change', function() {
                 if ($(this).is(':checked')) {
                     $('body').removeClass('light-mode');
+                    $('.dropdown-menu').removeClass('dropdown-menu-light');
                     localStorage.setItem('theme', 'dark');
                 } else {
                     $('body').addClass('light-mode');
+                    $('.dropdown-menu').addClass('dropdown-menu-light');
                     localStorage.setItem('theme', 'light');
                 }
             });

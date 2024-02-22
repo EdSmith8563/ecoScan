@@ -128,6 +128,20 @@ body {
     100% { background-position: 200% 0; }
 }
 
+/* Settings Dropdown Menu Styles */
+.dropdown-menu {
+    background-color: #272727;
+    color: #fff;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #fff; /* White text color for items */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #787575; /* Slightly lighter background on hover */
+}
+
 /* Theme styling */
 /* Light mode styles */
 /* Base light mode styles */
@@ -173,4 +187,14 @@ body {
 .light-mode #text-container .rows {
     background: #ffffff; /* Override gradient background for light mode */
     color: #000000; /* Ensure text is black for light mode */
+}
+
+.light-mode .dropdown-menu {
+    background-color: #ffffff; /* Light background for light mode */
+    color: #000000; /* Dark text for light mode */
+}
+
+.light-mode .nav-link,
+.light-mode .dropdown-item {
+    color: #000000;
 }

@@ -120,6 +120,20 @@ body {
 
 }
 
+/* Settings Dropdown Menu Styles */
+.dropdown-menu {
+    background-color: #272727;
+    color: #fff;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #fff; /* White text color for items */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #787575; /* Slightly lighter background on hover */
+}
+
 /* Dark mode styles */
 .dark-mode {
     background-color: #121212; /* Dark background for dark mode */
@@ -149,8 +163,12 @@ body {
     color: #000000; /* Dark text for light mode */
 }
 
-/* You might also want to add specific styles for other text elements to ensure they are visible in light mode */
 .light-mode .nav-link,
 .light-mode .dropdown-item {
     color: #000000;
+}
+
+.light-mode .dropdown-menu {
+    background-color: #ffffff; /* Light background for light mode */
+    color: #000000; /* Dark text for light mode */
 }
