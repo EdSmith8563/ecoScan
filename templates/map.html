@@ -22,9 +22,29 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/map">Map <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Settings</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownSettings">
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="themeSwitch" checked>
+                                    <label class="custom-control-label" for="themeSwitch">Theme</label>
+                                </div>                                
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            {% if user.is_authenticated %}
+                                <form action="{% url 'logout' %}" method="post" class="px-4 py-3">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-block">Log Out</button>
+                                </form>                                
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+                                <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                            {% endif %}
+                        </div>
+                    </li>  
                 </ul>
             </div>
         </nav>
@@ -189,5 +209,29 @@ initMap();  // Call the function to initialize the map
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // When the page loads
+            if (localStorage.getItem('theme') === 'light') {
+                $('body').addClass('light-mode');
+                $('#themeSwitch').prop('checked', false); // Reflect light mode in the toggle position
+            } else {
+                // If no preference is set, or it's explicitly dark, ensure the dark mode is active
+                $('body').removeClass('light-mode');
+                $('#themeSwitch').prop('checked', true); // Reflect dark mode in the toggle position
+            }
+        
+            // When the toggle changes
+            $('#themeSwitch').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('body').removeClass('light-mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    $('body').addClass('light-mode');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });        
+    </script>
 </body>
 </html>
