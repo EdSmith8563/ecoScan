@@ -172,3 +172,28 @@ body {
     background-color: #ffffff; /* Light background for light mode */
     color: #000000; /* Dark text for light mode */
 }
+
+/* Form Styles */
+/* Hover and active animation for the button */
+.btn-animate {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-animate:hover {
+    background-color: #0056b3; /* Darker shade when hovered */
+    transform: translateY(-3px); /* Slight move up */
+}
+
+.btn-animate:active {
+    background-color: #004080; /* Even darker shade when pressed */
+    transform: translateY(1px); /* Slight move down */
+}
+
+/* Add some space between form elements */
+.form-group.mb-2 {
+    margin-bottom: 0.5rem !important; /* Less space between inputs */
+}
+
+.form-group.mt-3 {
+    margin-top: 1rem !important; /* More space above the button */
+}
