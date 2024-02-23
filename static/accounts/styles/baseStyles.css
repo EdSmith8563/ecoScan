@@ -52,6 +52,7 @@ body {
     margin-top: 20px; /* Add some margin between the separator and the table */
     padding: 0 20px; /* Add padding to the table container */
     overflow-y: auto; /* Add horizontal scroll if needed */
+    height: 100vh;
 }
 
 .table {
@@ -96,6 +97,7 @@ body {
     animation: steam 40s linear infinite;
     -webkit-animation: steam 40s linear infinite;
     border-radius: 6px; /* Adjust border-radius for desired thickness */
+    transform: translate3d(0,0,0);
 }
 
 @keyframes steam {
