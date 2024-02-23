@@ -4,9 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Camera Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@latest"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'camera/styles/cameraStyles.css' %}">
+    <style>
+        #qr-title {
+            position: absolute;
+            top: 55px; /* Adjust as needed */
+            text-align: center;
+            left: 0;
+            width: 100%;
+            color: white; /* Ensure the text is visible on top of the video */
+            z-index: 10; /* Ensures the title is above the video */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -49,16 +61,42 @@
             </div>
         </nav>
     </header>
+    <div class="container mt-5 pt-5"> 
+        <h1 id="qr-title">Scan A QR Code</h1>
+    </div>
     <div id="video-container">
+        <canvas id="canvas" hidden></canvas>
         <video id="video-element" autoplay></video>
     </div>
 
     <script>
-        // JavaScript code to access the camera and capture media
-        navigator.mediaDevices.getUserMedia({ video: true })
+        const video = document.getElementById('video-element');
+        const canvasElement = document.getElementById('canvas');
+        const canvas = canvasElement.getContext('2d', { willReadFrequently: true });
+
+        function scanQRCode() {
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                canvasElement.hidden = false;
+                canvasElement.height = video.videoHeight;
+                canvasElement.width = video.videoWidth;
+                canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+                var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                var code = jsQR(imageData.data, imageData.width, imageData.height, {
+                    inversionAttempts: "dontInvert",
+                });
+                if (code) {
+                    window.location.href = code.data; // Redirect if QR code is found
+                    return;
+                }
+            }
+            requestAnimationFrame(scanQRCode);
+        }
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
             .then(function(stream) {
-                var videoElement = document.getElementById('video-element');
-                videoElement.srcObject = stream;
+                video.srcObject = stream;
+                video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+                requestAnimationFrame(scanQRCode);
             })
             .catch(function(error) {
                 console.error('Error accessing the camera:', error);
