@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'map',
     'accounts',
     "django_extensions",
-    'qr_code',
 ]
 
 MIDDLEWARE = [
