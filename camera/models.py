@@ -3,6 +3,8 @@ from django.db import models
 class Quiz(models.Model):
     title = models.CharField(max_length=100)
     # Additional fields as necessary
+    def __str__(self):
+        return self.title
 
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)

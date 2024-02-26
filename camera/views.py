@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from accounts.models import UserProfile, UserLocation, Location
 from django.db.models import F
+from .models import *
 
 def camera(request):
     return render(request, 'camera.html')
+@login_required
 def quiz1(request):
-    # Your view logic
-    return render(request, 'quiz/quiz1.html')
+    quiz = get_object_or_404(Quiz, title='CREWW Building')  # Adjust the title as necessary
+    return render(request, 'quiz/quiz1.html', {'quiz': quiz})
 
 def quiz2(request):
     # Your view logic
@@ -53,30 +55,39 @@ def quiz12(request):
 def quiz1_submit(request):
     if request.method == 'POST':
         user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
-        location = Location.objects.get(location_id='1')  # Assuming this location already exists
+        # Assuming each quiz has a unique identifier, like a slug or id
+        quiz = get_object_or_404(Quiz, title='CREWW Building')  # Adjust based on your Quiz model
+        location = Location.objects.get(location_id='1')  # Fetch the location related to this quiz
+        
         user_location, _ = UserLocation.objects.get_or_create(user=user_profile, location=location)
         
-        # Calculate points for this quiz
         points_for_this_quiz = 0
-        correct_answers = {'question1': 'C', 'question2': 'D', 'question3': 'C', 'question4': 'D', 'question5': 'A'}  # Example answers
-        for question, correct_answer in correct_answers.items():
-            if request.POST.get(question) == correct_answer:
-                points_for_this_quiz += 10
+        questions_answered_right = 0
         
+        for key, value in request.POST.items():
+            if key.startswith('question'):
+                question_id = key.split('question')[1]
+                selected_answer = value
+                
+                correct_answer = Answer.objects.filter(question_id=question_id, is_correct=True).first()
+                
+                if correct_answer and str(correct_answer.id) == selected_answer:
+                    points_for_this_quiz += 10
+                    questions_answered_right += 1
+
         # Update points in UserProfile and UserLocation
         user_profile.total_points = F('total_points') + points_for_this_quiz
         user_profile.save()
-        user_profile.refresh_from_db()  # Ensure the F() expression update is applied
+        user_profile.refresh_from_db()
 
         user_location.points_obtained += points_for_this_quiz
-        user_location.questions_answered_right += sum(1 for answer in request.POST.values() if answer in correct_answers.values())
+        user_location.questions_answered_right += questions_answered_right
         user_location.save()
 
-        # Redirect to a new page after form submission
-        return redirect('quiz_success')  # Replace 'some_success_url' with the actual URL name
+        return redirect('quiz_success')
     
-    # If not a POST request, or some other logic needed
-    return redirect('quiz1')  # Redirect back to quiz or elsewhere as needed
+    return redirect('quiz1')
+
 
 @login_required
 def quiz_success(request):
