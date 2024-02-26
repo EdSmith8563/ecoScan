@@ -19,6 +19,11 @@ class UserLocation(models.Model):
     class Meta:
         unique_together = ('user', 'location')
     def __str__(self):
-        return self.location.name
+        # Access the username through the user profile's user field
+        username = self.user.user.username
+        # Access the location name directly
+        location_name = self.location.name
+        # Return the formatted string
+        return f"{username} - {location_name}"
         
 

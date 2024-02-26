@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CREWW Building</title>
+    <title>{{ quiz.title }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'quizzes/styles/quizStyles.css' %}">
+    
     <style>
         .question { display: none; } /* Initially hide all questions */
         .visible { display: block !important; } /* Class to show current question */
@@ -14,60 +14,22 @@
 <body class="bg-dark text-white">
     <div class="container mt-5">
         <div class="quiz-container bg-secondary p-4 rounded">
-            <h2 class="text-center mb-4">CREWW Building</h2>
+            <h2 class="text-center mb-4">{{ quiz.title }}</h2>
             <form action="{% url 'quiz1_submit' %}" method="POST" class="needs-validation" novalidate>
                 {% csrf_token %}
-                <!-- Question 1 -->
-                <!-- Question 1 -->
-<div class="question">
-    <h3>Question 1: What is ...?</h3>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question1" id="q1a" value="A" required>
-        <label class="form-check-label" for="q1a">Option A</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question1" id="q1b" value="B" required>
-        <label class="form-check-label" for="q1b">Option B</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question1" id="q1c" value="C" required>
-        <label class="form-check-label" for="q1c">Option C</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question1" id="q1d" value="D" required>
-        <label class="form-check-label" for="q1d">Option D</label>
-    </div>
-    <!-- Additional options for Question 1 -->
-</div>
-
-<!-- Question 2 -->
-<div class="question">
-    <h3>Question 2: Where is ...?</h3>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question2" id="q2a" value="A" required>
-        <label class="form-check-label" for="q2a">Option A</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question2" id="q2b" value="B" required>
-        <label class="form-check-label" for="q2b">Option B</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question2" id="q2c" value="C" required>
-        <label class="form-check-label" for="q2c">Option C</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="question2" id="q2d" value="D" required>
-        <label class="form-check-label" for="q2d">Option D</label>
-    </div>
-    <!-- Additional options for Question 2 -->
-</div>
-
-                <!-- Add additional questions in a similar fashion -->
-                <!-- Question 2 -->
-                <!-- ... -->
+                {% for question in quiz.questions.all %}
+                <div class="question">
+                    <h3>{{ question.text }}</h3>
+                    {% for answer in question.answers.all %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question{{ question.id }}" id="answer{{ answer.id }}" value="{{ answer.id }}" required>
+                        <label class="form-check-label" for="answer{{ answer.id }}">{{ answer.text }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
                 
-                <!-- Submit Button -->
-                <button type="button" id="prevBtn" class="btn btn-primary" onclick="changeQuestion(-1)">Previous</button>
+                <button type="button" id="prevBtn" class="btn btn-primary" onclick="changeQuestion(-1)" style="display:none;">Previous</button>
                 <button type="button" id="nextBtn" class="btn btn-primary" onclick="changeQuestion(1)">Next</button>
                 <button type="submit" id="submitBtn" class="btn btn-success btn-block" style="display:none;">Submit</button>
             </form>
@@ -75,35 +37,29 @@
     </div>
     <script>
         let currentQuestion = 0; // Index of the current question
-    
+
         function showQuestion(n) {
             const questions = document.querySelectorAll('.question');
-            // Ensure we don't try to show a question outside the index range
+            console.log(questions.length);
             if (n < 0 || n >= questions.length) return;
-    
-            // Hide all questions
-            questions.forEach(question => {
-                question.style.display = 'none'; 
-            });
-    
-            // Show the current question
+
+            questions.forEach(question => question.style.display = 'none');
             questions[n].style.display = 'block';
-    
-            // Show or hide navigation buttons
+
             document.getElementById('prevBtn').style.display = (n === 0) ? 'none' : 'inline-block';
             document.getElementById('nextBtn').style.display = (n === questions.length - 1) ? 'none' : 'inline-block';
             document.getElementById('submitBtn').style.display = (n === questions.length - 1) ? 'inline-block' : 'none';
         }
-    
+
         function changeQuestion(step) {
             currentQuestion += step;
             showQuestion(currentQuestion);
         }
-    
-        // Show the first question on initial load
+
         document.addEventListener('DOMContentLoaded', () => {
             showQuestion(currentQuestion);
         });
+         
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
