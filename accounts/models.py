@@ -18,4 +18,7 @@ class UserLocation(models.Model):
 
     class Meta:
         unique_together = ('user', 'location')
+    def __str__(self):
+        return self.location.name
+        
 
