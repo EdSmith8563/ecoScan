@@ -132,6 +132,18 @@ body {
 
 }
 
+.rank-icon {
+width: 40px; /* Adjust the width as needed */
+height: auto; /* Maintain aspect ratio */
+vertical-align: top;
+}
+/* Styles for screens less than 600px wide */
+@media (max-width: 600px) {
+    .rank-icon {
+      width: 40px; /* Set to a size that is visible on small screens */
+      /* other styles if needed */
+    }
+  }
 /* Settings Dropdown Menu Styles */
 .dropdown-menu {
     background-color: #272727;
