@@ -21,6 +21,11 @@
             {% endif %}
           </div>
         {% endfor %}
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="gdprConsent" name="gdprConsent" required>
+          <label class="form-check-label" for="gdprConsent">I agree to the <a href="#GDPRPolicy" target="_blank">GDPR Privacy Policy</a> and <a href="#TermsAndConditions" target="_blank">Terms and Conditions</a>.</label>
+          <div class="invalid-feedback">You must agree to our GDPR Policy and Terms and Conditions before signing up.</div>
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
         </div>
