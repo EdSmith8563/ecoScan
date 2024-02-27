@@ -1,22 +1,57 @@
-
 html, body {
     background-color: #272727;
     margin: 0;
-    padding: 0;
+    padding-top: 56px; /* Adjust this to be at least the height of your navbar */
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
+.navbar {
+    z-index: 1020; /* Ensure navbar is above other content */
+}
+
 #video-container {
+    position: absolute; /* Keep it relative to the body */
+    top: 56px; /* Adjust this to be at least the height of your navbar */
+    left: 0;
     width: 100%;
-    height: 100vh;
-    position: relative;
+    height: calc(100% - 56px); /* Adjust this to prevent overlaying the navbar */
+    overflow: hidden; /* Prevent any part of the video from overflowing */
 }
+
 #video-element {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Keep */
+    height: auto; /* Keep */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px; /* Increase top padding for mobile devices if navbar is larger */
+    }
+
+    #video-container {
+        top: 70px; /* Adjust this value if the navbar height changes on mobile */
+        height: calc(100% - 70px); /* Adjust the height to allow for the navbar */
+    }
+    #container{
+        position: fixed; /* Fix the position to prevent pushing the map */
+        top: 2%; /* Align to the top */
+        left: 0; /* Align to the left */
+        width: 100vw;
+        height: 100vh; /* Fill the entire viewport height */
+        padding: 0;
+        color: white;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box; /* Include padding in width calculation */
+        text-align: center;
+    }
+
+    /* Additional mobile-specific styles can go here */
+}
+
+
