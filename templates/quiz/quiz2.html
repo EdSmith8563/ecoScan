@@ -1,7 +1,70 @@
-{% extends "camera.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ quiz.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        .question { display: none; } /* Initially hide all questions */
+        .visible { display: block !important; } /* Class to show current question */
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <div class="quiz-container bg-secondary p-4 rounded">
+            <h2 class="text-center mb-4">{{ quiz.title }}</h2>
+            <form action="{% url 'quiz2_submit' %}" method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {% for question in quiz.questions.all %}
+                <div class="question">
+                    <h3>{{ question.text }}</h3>
+                    {% for answer in question.answers.all %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question{{ question.id }}" id="answer{{ answer.id }}" value="{{ answer.id }}" required>
+                        <label class="form-check-label" for="answer{{ answer.id }}">{{ answer.text }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                
+                <button type="button" id="prevBtn" class="btn btn-primary" onclick="changeQuestion(-1)" style="display:none;">Previous</button>
+                <button type="button" id="nextBtn" class="btn btn-primary" onclick="changeQuestion(1)">Next</button>
+                <button type="submit" id="submitBtn" class="btn btn-success btn-block" style="display:none;">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let currentQuestion = 0; // Index of the current question
 
-{% block content %}
-<!-- Insert the specific content for quiz1 here -->
-<h2>Quiz 2</h2>
-<!-- Quiz content goes here -->
-{% endblock %}
+        function showQuestion(n) {
+            const questions = document.querySelectorAll('.question');
+            console.log(questions.length);
+            if (n < 0 || n >= questions.length) return;
+
+            questions.forEach(question => question.style.display = 'none');
+            questions[n].style.display = 'block';
+
+            document.getElementById('prevBtn').style.display = (n === 0) ? 'none' : 'inline-block';
+            document.getElementById('nextBtn').style.display = (n === questions.length - 1) ? 'none' : 'inline-block';
+            document.getElementById('submitBtn').style.display = (n === questions.length - 1) ? 'inline-block' : 'none';
+        }
+
+        function changeQuestion(step) {
+            currentQuestion += step;
+            showQuestion(currentQuestion);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showQuestion(currentQuestion);
+        });
+         
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
