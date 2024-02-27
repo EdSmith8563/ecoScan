@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         locations = [
             {'location_id': '1', 'name': 'CREWW Building'},
-            {'location_id': '2', 'name': 'Solar Panels'},
+            {'location_id': '2', 'name': 'Car Park B'},
             {'location_id': '3', 'name': 'Greenhouse'},
             {'location_id': '4', 'name': 'Reed Pond'},
             {'location_id': '5', 'name': 'East Park'},
