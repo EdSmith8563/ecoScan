@@ -9,35 +9,15 @@ class UserProfile(models.Model):
         return self.user.username
     
     def level(self):
-        if self.total_points < 25:
-            return 0  # Consider level 0 for less than 25 points
-        elif self.total_points < 50:
-            return 1
-        elif self.total_points < 75:
-            return 2
-        elif self.total_points < 100:
-            return 3
-        elif self.total_points < 150:
-            return 4  # Consider level 0 for less than 25 points
-        elif self.total_points < 200:
-            return 5
-        elif self.total_points < 250:
-            return 6
-        elif self.total_points < 300:
-            return 7
-        elif self.total_points < 350:
-            return 8  # Consider level 0 for less than 25 points
-        elif self.total_points < 400:
-            return 9
-        elif self.total_points < 450:
-            return 10
-        elif self.total_points < 500:
-            return 11
-        
-        # Add more levels as needed
-        else:
-            return 4  # Consider this for 100 or more points
-
+        levels = [25, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800]
+        for i, threshold in enumerate(levels, 1):
+            if self.total_points < threshold:
+                return i
+        return len(levels) + 1
+    
+    def rank_image(self):
+        level = self.level()
+        return f'rank_{level}.png' if level <= 12 else 'rank_12.png'
 
 class UserLocation(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
