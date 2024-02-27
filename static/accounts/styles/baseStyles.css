@@ -96,6 +96,7 @@ body {
     animation: steam 40s linear infinite;
     -webkit-animation: steam 40s linear infinite;
     border-radius: 6px; /* Adjust border-radius for desired thickness */
+    transform: translate3d(0,0,0);
 }
 
 @keyframes steam {
