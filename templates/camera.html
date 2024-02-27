@@ -47,13 +47,19 @@
                             </a>
                             <div class="dropdown-divider"></div>
                             {% if user.is_authenticated %}
-                                <form action="{% url 'logout' %}" method="post" class="px-4 py-3">
+                            <li class="nav-item">
+                                <form action="{% url 'logout' %}" method="post" class="form-inline">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger btn-block">Log Out</button>
-                                </form>                                
+                                    <button type="submit" class="btn btn-danger">Log Out</button>
+                                </form>
+                            </li>                             
                             {% else %}
-                                <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
-                                <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                            <li class="nav-item">
+                                <a class="btn btn-primary mr-2" href="{% url 'login' %}">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-success" href="{% url 'signup' %}">Sign Up</a>
+                            </li>
                             {% endif %}
                         </div>
                     </li>  
