@@ -65,7 +65,7 @@
                 {% if user.is_authenticated %}
                 Welcome {{ user.username }}!</div>
                 <hr class="separator"></div>
-                <h2 class="text-center">You Have 90 Points 🎉</h2>
+                <h2 class="text-center">You are level {{ user.profile.level }} <img src="{% static '/accounts/rank_image/'|add:request.user.profile.rank_image %}" alt="Rank" class="rank-icon"></h2>
                 <div class="table-container">
                     <div class="row">
                     <div class="col-md-6">
