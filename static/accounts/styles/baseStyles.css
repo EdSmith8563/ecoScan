@@ -133,6 +133,7 @@ body {
 }
 
 .rank-icon {
+<<<<<<< HEAD
 width: 40px; /* Adjust the width as needed */
 height: auto; /* Maintain aspect ratio */
 vertical-align: top;
@@ -144,6 +145,13 @@ vertical-align: top;
       /* other styles if needed */
     }
   }
+=======
+width: 2%; /* Adjust the width as needed */
+height: auto; /* Maintain aspect ratio */
+vertical-align: top;
+}
+
+>>>>>>> parent of d39af28 (Revert "Merge branch 'main' of https://github.com/EdSmith8563/ecoScan")
 /* Settings Dropdown Menu Styles */
 .dropdown-menu {
     background-color: #272727;
