@@ -176,18 +176,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#themeSwitch').on('change', function() {
+            $('#themeSwitch').on('change', function(event) {
+                event.stopPropagation(); // Prevent event propagation
                 $('body').toggleClass('light-mode');
                 $('.dropdown-menu').toggleClass('dropdown-menu-light');
                 // Additional theme switch actions here
             });
+    
+            // Function to hide the cookie banner
+            function hideCookieBanner() {
+                document.getElementById('cookieConsentBanner').style.display = 'none';
+                // Here, you should also set a cookie or local storage flag to remember the user's choice
+            }
+    
+            // Event listener for the accept button on the cookie banner
+            $('#cookieConsentBanner button').on('click', function(event) {
+                hideCookieBanner();
+            });
+    
+            // Event listener to prevent dropdown menu from closing when clicking inside the dropdown
+            $('.dropdown-menu').on('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation
+            });
+    
+            // Event listener to close the dropdown menu when clicking outside of it
+            $(document).on('click', function(event) {
+                $('.dropdown-menu').removeClass('show');
+            });
+    
+            // Event listener to prevent the dropdown from closing when clicking the dropdown toggle
+            $('#navbarDropdownSettings').on('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation
+                $('.dropdown-menu').toggleClass('show');
+            });
         });
-
-        function hideCookieBanner() {
-            document.getElementById('cookieConsentBanner').style.display = 'none';
-            // Here, you should also set a cookie or local storage flag to remember the user's choice
-        }
     </script>
+    
 </body>
 
 </html>
