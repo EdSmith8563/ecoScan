@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'map',
     'accounts',
+    'camera',
     "django_extensions",
 ]
 

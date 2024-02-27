@@ -85,7 +85,8 @@
                     inversionAttempts: "dontInvert",
                 });
                 if (code) {
-                    window.location.href = code.data; // Redirect if QR code is found
+                    const quizId = code.data; // Or extract the quiz number from the code.data if it's a URL or has additional text
+                    window.location.href = `${quizId}`; // Adjust the path as needed
                     return;
                 }
             }

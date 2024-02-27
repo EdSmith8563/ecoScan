@@ -1,0 +1,42 @@
+body, html {
+    background-color: #272727;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+.quiz-container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    margin: auto;
+    width: 100%;
+    max-width: 600px; /* Adjust width as needed */
+}
+.question {
+    display: none;
+    margin-bottom: 2rem;
+}
+.visible {
+    display: block !important;
+}
+.form-check {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #444; /* Slightly lighter than the container for contrast */
+    border-radius: 0.5rem;
+}
+.form-check-input {
+    margin-top: 0.3rem;
+    margin-right: 1rem;
+    accent-color: #ADFF2F; /* Customize radio button color */
+    width: 20px;
+    height: 20px; /* Increase size of radio buttons */
+}
+.form-check-label {
+    font-size: 1.2rem; /* Increase label font size */
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+}
+#prevBtn, #nextBtn, #submitBtn {
+    margin-top: 1rem;
+}
