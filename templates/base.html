@@ -7,16 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'accounts/styles/baseStyles.css' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/styles/baseStyles.css' %}">
     <!-- Custom CSS -->
+    <style>
+        .cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(52, 58, 64, 0.9); /* Dark background with opacity */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .cookie-consent-banner button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <!-- Add "fixed-top" class -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="/"><img src="{% static '/accounts/images/leaf.png' %}" alt="Phone Icon" class="phone-icon"> EcoScan</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -39,20 +55,20 @@
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" id="themeSwitch" checked>
                                     <label class="custom-control-label" for="themeSwitch">Theme</label>
-                                </div>                                
+                                </div>
                             </a>
                             <div class="dropdown-divider"></div>
                             {% if user.is_authenticated %}
-                                <form action="{% url 'logout' %}" method="post" class="px-4 py-3">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger btn-block">Log Out</button>
-                                </form>                                
+                            <form action="{% url 'logout' %}" method="post" class="px-4 py-3">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-block">Log Out</button>
+                            </form>
                             {% else %}
-                                <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
-                                <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                            <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+                            <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
                             {% endif %}
                         </div>
-                    </li>                
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -141,44 +157,34 @@
 
         </div>
     </main>
-    <!-- Bootstrap JS (optional, only if you need Bootstrap JavaScript components) -->
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent-banner" id="cookieConsentBanner">
+        <p>We use cookies to improve your experience on our site. By continuing to use our site, you accept our use of cookies.</p>
+        <button class="btn btn-primary" onclick="hideCookieBanner()">Accept</button>
+    </div>
+
+    <!-- Bootstrap JS & Cookie Banner Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
-            // Loop through each row in the table
-            $('tbody tr').each(function(){
-                // Check if any cell in the row contains the text 'You'
-                if ($(this).find('td:contains("You")').length > 0) {
-                    console.log("hello");
-                    // Add a class to the row to change its color
-                    $(this).addClass('lighter-row');
-                }
+        $(document).ready(function() {
+            $('#themeSwitch').on('change', function() {
+                $('body').toggleClass('light-mode');
+                $('.dropdown-menu').toggleClass('dropdown-menu-light');
+                // Additional theme switch actions here
             });
         });
 
-        $(document).ready(function() {
-            // Check the stored theme preference when the page loads
-            if (localStorage.getItem('theme') === 'light') {
-                $('body').addClass('light-mode');
-                $('#themeSwitch').prop('checked', false); // Set the toggle to reflect light mode
-            }
-        
-            // Toggle theme mode and store the preference
-            $('#themeSwitch').on('change', function() {
-                if ($(this).is(':checked')) {
-                    $('body').removeClass('light-mode');
-                    $('.dropdown-menu').removeClass('dropdown-menu-light');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    $('body').addClass('light-mode');
-                    $('.dropdown-menu').addClass('dropdown-menu-light');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        }); 
+        function hideCookieBanner() {
+            document.getElementById('cookieConsentBanner').style.display = 'none';
+            // Here, you should also set a cookie or local storage flag to remember the user's choice
+        }
     </script>
 </body>
 
 </html>
+
+
+
