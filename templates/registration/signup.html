@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
+    <div class="col-lg-6 col-md-8"> <!-- Increase the column size if necessary -->
       <h2 class="text-center mb-4">Sign Up</h2>
       <form method="post" class="needs-validation mt-5" novalidate>
         {% csrf_token %}
@@ -13,7 +13,7 @@
           <div class="form-group mt-2">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" required>
-            <small class="form-text text-muted w-100">{{ field.help_text }}</small>
+            <small class="form-text text-muted w-100">{{ field.help_text }}</small> <!-- Increase the width -->
             {% if field.errors %}
               <div class="invalid-feedback">
                 {{ field.errors }}
@@ -21,11 +21,6 @@
             {% endif %}
           </div>
         {% endfor %}
-        <div class="form-group d-flex align-items-center">
-          <input type="checkbox" class="mr-2" id="gdprConsent" name="gdprConsent" required>
-          <label for="gdprConsent" style="font-size: 0.8rem;">I agree to the <a href="GDPR" target="_blank">GDPR Privacy Policy</a> and <a href="termsandconditions" target="_blank">Terms and Conditions</a>.</label>
-          <div class="invalid-feedback">You must agree to our GDPR Policy and Terms and Conditions before signing up.</div>
-        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
         </div>
