@@ -33,7 +33,6 @@
                                     <label class="custom-control-label" for="themeSwitch">Theme</label>
                                 </div>                                
                             </a>
-                            <div class="dropdown-divider"></div>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <form action="{% url 'logout' %}" method="post" class="form-inline">
@@ -217,18 +216,9 @@ initMap();  // Call the function to initialize the map
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            // When the page loads
-            if (localStorage.getItem('theme') === 'light') {
-                $('body').addClass('light-mode');
-                $('#themeSwitch').prop('checked', false); // Reflect light mode in the toggle position
-            } else {
-                // If no preference is set, or it's explicitly dark, ensure the dark mode is active
-                $('body').removeClass('light-mode');
-                $('#themeSwitch').prop('checked', true); // Reflect dark mode in the toggle position
-            }
-        
-            // When the toggle changes
-            $('#themeSwitch').on('change', function() {
+            // Function to handle theme switch
+            $('#themeSwitch').on('change', function(event) {
+                event.stopPropagation(); // Prevent event propagation
                 if ($(this).is(':checked')) {
                     $('body').removeClass('light-mode');
                     $('.dropdown-menu').removeClass('dropdown-menu-light');
@@ -239,7 +229,54 @@ initMap();  // Call the function to initialize the map
                     localStorage.setItem('theme', 'light');
                 }
             });
-        });        
+    
+            // Function to handle hiding the navbar
+            function hideNavbar() {
+                var navbar = document.querySelector('.navbar');
+                setTimeout(function() {
+                    navbar.classList.remove("navbar-show");
+                }, 3000);
+            }
+    
+            // Function to show the navbar
+            function showNavbar() {
+                var navbar = document.querySelector('.navbar');
+                navbar.classList.add("navbar-show");
+    
+                var menuIcon = document.getElementById("menu-icon");
+                menuIcon.style.visibility = "hidden";
+                setTimeout(function() {
+                    menuIcon.style.visibility = "visible"; // Show the menu-icon again after 3 seconds
+                }, 3000);
+            }
+    
+            // Event listener for mouseover event on menu icon
+            $('#menu-icon').on('mouseover', function(event) {
+                showNavbar();
+            });
+    
+            // Event listener for mouseout event on menu icon
+            $('#menu-icon').on('mouseout', function(event) {
+                hideNavbar();
+            });
+    
+            // Event listener for click event on navbar dropdown
+            $('.dropdown-menu').on('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation
+            });
+    
+            // Event listener to close the dropdown menu when clicking outside of it
+            $(document).on('click', function(event) {
+                $('.dropdown-menu').removeClass('show');
+            });
+    
+            // Event listener for toggling the dropdown menu
+            $('#navbarDropdownSettings').on('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation
+                $('.dropdown-menu').toggleClass('show');
+            });
+        });
     </script>
+    
 </body>
 </html>
