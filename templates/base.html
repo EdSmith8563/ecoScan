@@ -169,6 +169,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Check if the user has already accepted the cookie policy
+            if (localStorage.getItem('cookieConsent') === 'true') {
+                // Hide the cookie consent banner if the user has accepted the policy before
+                document.getElementById('cookieConsentBanner').style.display = 'none';
+            }
+        });
         $(document).ready(function() {
             $('#themeSwitch').on('change', function() {
                 $('body').toggleClass('light-mode');
@@ -177,10 +184,16 @@
             });
         });
 
+
         function hideCookieBanner() {
             document.getElementById('cookieConsentBanner').style.display = 'none';
-            // Here, you should also set a cookie or local storage flag to remember the user's choice
+            // Set a flag in localStorage to remember the user's choice
+            localStorage.setItem('cookieConsent', 'true');
         }
+        
+            
+                    
+        
     </script>
 </body>
 
