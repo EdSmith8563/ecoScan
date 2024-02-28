@@ -3,16 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ quiz.title }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
-    <style>
-        .question { display: none; } /* Initially hide all questions */
-        .visible { display: block !important; } /* Class to show current question */
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/styles/quizStyles.css' %}">
+
 </head>
 <body class="bg-dark text-white">
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="quiz-container bg-secondary p-4 rounded">
             <h2 class="text-center mb-4">{{ quiz.title }}</h2>
             <form action="{% url 'quiz_submit' %}" method="POST" class="needs-validation" novalidate>
@@ -29,10 +27,12 @@
                     {% endfor %}
                 </div>
                 {% endfor %}
-                
-                <button type="button" id="prevBtn" class="btn btn-primary" onclick="changeQuestion(-1)" style="display:none;">Previous</button>
-                <button type="button" id="nextBtn" class="btn btn-primary" onclick="changeQuestion(1)">Next</button>
-                <button type="submit" id="submitBtn" class="btn btn-success btn-block" style="display:none;">Submit</button>
+                <div class="button-container">
+                    <button type="button" id="prevBtn" class="btn btn-primary" onclick="changeQuestion(-1)" style="display:none;">Previous</button>
+                    <button type="button" id="nextBtn" class="btn btn-primary" onclick="changeQuestion(1)">Next</button>
+                    <button type="submit" id="submitBtn" class="btn btn-success btn-block" style="display:none;">Submit</button>
+                    <button type="button" class="btn btn-danger exit-button" onclick="exitQuiz()">Exit</button>
+                </div>
             </form>
         </div>
     </div>
@@ -51,6 +51,9 @@
             document.getElementById('nextBtn').style.display = (n === questions.length - 1) ? 'none' : 'inline-block';
             document.getElementById('submitBtn').style.display = (n === questions.length - 1) ? 'inline-block' : 'none';
         }
+        function exitQuiz() {
+            window.location.href = "{% url 'home' %}";
+        }
 
         function changeQuestion(step) {
             currentQuestion += step;
@@ -62,8 +65,6 @@
         });
          
     </script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
