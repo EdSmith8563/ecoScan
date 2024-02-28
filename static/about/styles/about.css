@@ -1,0 +1,33 @@
+body {
+    background-color: #272727;
+    color: #fff;
+    padding-top: 70px;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, p {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5%;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
