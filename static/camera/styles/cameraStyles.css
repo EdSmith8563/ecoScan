@@ -25,6 +25,7 @@ body {
 }
 
 
+
 #video-element {
     width: 100%;
     height: auto;
@@ -35,15 +36,40 @@ body {
     z-index: 2; /* Ensure video is under the overlay */
 }
 @media (min-width: 768px) {
-    #guide-overlay {
-        width: 30%; /* Smaller size on desktop */
-    }
-
     /* Optionally, adjust the video container for desktop if needed */
     #video-container {
+        top: 20px;
         height: 90vh;
         width: auto; /* Example to take up more screen space */
+        visibility: hidden;
+    }
+    #animation-container {
+        height: 30%;
+        width: auto;
+        visibility: visible;
+    }
+    #canvas {
+        display: visible; /* Hides the video element */
+    }
+    #video-element{
+        visibility: visible;
     }
 }
+@media (max-width: 768px) {
+       /* Optionally, adjust the video container for desktop if needed */
+    #video-container {
+        top: 10%;
+        visibility: hidden;
+    }
+    #animation-container {
+        visibility: visible;
+    }
+    #canvas {
+        display: visible; /* Hides the video element */
+    }
+    #video-element{
+        visibility: visible;
+    }
 
+}
 
