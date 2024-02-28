@@ -68,6 +68,16 @@ body {
     box-sizing: border-box; /* Include padding in width calculation */
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    #text-container {
+        visibility: hidden!important;
+    }
+    #map-container {
+        width: 100vw!important; 
+        z-index: 1000!important;   
+    }
+}
 .image-column img {
     padding-left: 10px;
     padding-bottom: 5px;
@@ -205,12 +215,4 @@ body {
 .light-mode .nav-link,
 .light-mode .dropdown-item {
     color: #000000;
-}
-@media (max-width: 768px) {
-    #text-container {
-        display: none;
-    }
-    #map-container {
-        width: 100vw;     
-    }
 }

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Exeter University Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOGfMmmaQuKSGguV1f_uhdBPURszjc7AU"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'map/styles/mapStyles.css' %}"> 
@@ -56,8 +57,8 @@ function hideNavbar() {
     }, 3000);
 }
     function initMap() {
-        var initialZoom = 16.5;
-        var minZoom = 16.5; // Set your minimum zoom level
+        var initialZoom = window.innerWidth < 768 ? 14.5 : 15.5;
+        var minZoom = 14.5; // Set your minimum zoom level
         var maxZoom = 18.5;
         var bounds = {
             north: 50.73731688079953 + 0.005, // Set the northern latitude boundary
