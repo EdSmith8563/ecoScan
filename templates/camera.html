@@ -22,52 +22,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <!-- Add "fixed-top" class -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/camera">Camera</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/map">Map <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Settings
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownSettings">
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="themeSwitch" checked>
-                                    <label class="custom-control-label" for="themeSwitch">Theme</label>
-                                </div>                                
-                            </a>
-                            {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <form action="{% url 'logout' %}" method="post" class="form-inline">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">Log Out</button>
-                                </form>
-                            </li>                               
-                            {% else %}
-                            <li class="nav-item">
-                                <a class="btn btn-primary mr-2" href="{% url 'login' %}">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-success" href="{% url 'signup' %}">Sign Up</a>
-                            </li>
-                            {% endif %}
-                        </div>
-                    </li>  
-                </ul>
-            </div>
-        </nav>
+        {% include 'navbar.html' %}
     </header>
 
-    
     <div class="container mt-5 pt-5"> 
         <h1 id="qr-title">Scan A QR Code</h1>
     </div>
@@ -76,7 +33,6 @@
         <canvas id="canvas" class="canvas" hidden></canvas>
         <video id="video-element" autoplay></video>
     </div>
-
 
     <script>
         const video = document.getElementById('video-element');
@@ -111,12 +67,9 @@
             .catch(function(error) {
                 console.error('Error accessing the camera:', error);
             });
-        
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-
 </body>
 </html>

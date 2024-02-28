@@ -29,55 +29,8 @@
 
 <body>
     <header>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="/"><img src="{% static '/accounts/images/leaf.png' %}" alt="Phone Icon" class="phone-icon"> EcoScan</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/camera">Camera</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/map">Map</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Settings
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownSettings">
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="themeSwitch" checked>
-                                    <label class="custom-control-label" for="themeSwitch">Theme</label>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <!-- Authentication Links -->
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <form action="{% url 'logout' %}" method="post" class="form-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Log Out</button>
-                        </form>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="btn btn-primary mr-2" href="{% url 'login' %}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-success" href="{% url 'signup' %}">Sign Up</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+        <!-- Include Navbar -->
+        {% include 'navbar.html' %}
     </header>
 
     <main>
@@ -170,7 +123,7 @@
         <button class="btn btn-primary" onclick="hideCookieBanner()">Accept</button>
     </div>
 
-    <!-- Bootstrap JS & Cookie Banner Script -->
+    <!-- Necessary Scripts for Navbar and Cookies -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -182,53 +135,19 @@
                 document.getElementById('cookieConsentBanner').style.display = 'none';
             }
         });
-    
-        $(document).ready(function() {
-            $('#themeSwitch').on('change', function(event) {
-                event.stopPropagation(); // Prevent event propagation
-                $('body').toggleClass('light-mode');
-                $('.dropdown-menu').toggleClass('dropdown-menu-light');
-                // Additional theme switch actions here
-            });
-    
-            // Function to hide the cookie banner
-            function hideCookieBanner() {
-                document.getElementById('cookieConsentBanner').style.display = 'none';
-                // Set a flag in localStorage to remember the user's choice
-                localStorage.setItem('cookieConsent', 'true');
-            }
-    
-            // Event listener for the accept button on the cookie banner
-            $('#cookieConsentBanner button').on('click touchstart', function(event) {
-                hideCookieBanner();
-            });
-    
-            // Event listener to prevent dropdown menu from closing when clicking inside the dropdown
-            $('.dropdown-menu').on('click touchstart', function(event) {
-                event.stopPropagation(); // Prevent event propagation
-            });
-    
-            // Event listener to close the dropdown menu when clicking outside of it
-            $(document).on('click touchstart', function(event) {
-                $('.dropdown-menu').removeClass('show');
-            });
-    
-            // Event listener to toggle the dropdown menu when clicking the dropdown toggle
-            $('#navbarDropdownSettings').on('click touchstart', function(event) {
-                event.stopPropagation(); // Prevent event propagation
-                $('.dropdown-menu').toggleClass('show');
-            });
-    
-            // Additional event listener to close the dropdown menu when releasing touch on the dropdown toggle
-            $('#navbarDropdownSettings').on('touchend', function(event) {
-                $('.dropdown-menu').toggleClass('show');
-            });
+
+        // Function to hide the cookie banner
+        function hideCookieBanner() {
+            document.getElementById('cookieConsentBanner').style.display = 'none';
+            // Set a flag in localStorage to remember the user's choice
+            localStorage.setItem('cookieConsent', 'true');
+        }
+
+        // Event listener for the accept button on the cookie banner
+        $('#cookieConsentBanner button').on('click touchstart', function(event) {
+            hideCookieBanner();
         });
     </script>
-    
 </body>
 
 </html>
-
-
-
