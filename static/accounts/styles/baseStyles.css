@@ -239,3 +239,11 @@ vertical-align: top;
 .form-text ul {
     list-style-type: none;
 }
+
+.signup-text {
+    font-size: 0.35em;
+}
+
+.signup-link {
+    text-decoration: underline;
+}

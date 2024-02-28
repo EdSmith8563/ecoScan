@@ -23,8 +23,11 @@
             {% endfor %}
           </div>
         {% endfor %}
-        <div class="form-group mt-3"> <!-- Added top margin for space above the submit button -->
+        <div class="form-group mt-3"> 
           <button type="submit" class="btn btn-primary btn-block btn-animate">Log In</button>
+        </div>
+        <div class="text-center mt-3"> <!-- Adjust the margin as needed -->
+          <p class="signup-text">Don't have an account? <a href="{% url 'signup' %}" class="signup-link">Sign Up</a>.</p>
         </div>
       </form>
     </div>
