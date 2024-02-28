@@ -3,6 +3,8 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         /* CSS for the phone icon */
         .phone-icon {
@@ -10,6 +12,9 @@
             height: auto; /* Maintain aspect ratio */
             margin-left: 0px; /* Adjust spacing between the icon and the text */
 
+        }
+        .nav-link {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -23,13 +28,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/" role="button">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/camera">Camera</a>
+                <a class="nav-link" href="/camera" role="button">Camera</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/map">Map</a>
+                <a class="nav-link" href="/map" role="button">Map</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,15 +54,15 @@
             <li class="nav-item">
                 <form action="{% url 'logout' %}" method="post" class="form-inline">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Log Out</button>
+                    <button type="submit" class="btn btn-danger" role="button">Log Out</button>
                 </form>
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="btn btn-primary mr-2" href="{% url 'login' %}">Log In</a>
+                <a class="btn btn-primary mr-2" href="{% url 'login' %}" role="button">Log In</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-success" href="{% url 'signup' %}">Sign Up</a>
+                <a class="btn btn-success" href="{% url 'signup' %}" role="button">Sign Up</a>
             </li>
             {% endif %}
         </ul>

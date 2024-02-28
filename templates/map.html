@@ -7,6 +7,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOGfMmmaQuKSGguV1f_uhdBPURszjc7AU"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'map/styles/mapStyles.css' %}"> 
+
 </head>
 <body>
     <header>
@@ -37,8 +38,18 @@
     <div id="map-container">
         <div id="map"></div>
     </div>
-    
+    {{ completed_locations|json_script:"completedLocationsData" }}
     <script>
+        // Parse the JSON data into the completedLocations variable
+        var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // Accessing the JSON data directly without using JSON.parse
+    var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
+
+    // Now you can use `completedLocations` in your JavaScript code, for example, in your initMap function
+});
     function showNavbar() {
     var navbar = document.querySelector('.navbar');
     navbar.classList.add("navbar-show");
@@ -83,7 +94,7 @@ function hideNavbar() {
     map.setTilt(0);
 
     // Define the button icon image
-    var iconBase = "{% static 'map/images/question.png' %}";
+   
 
     // Define the reference physical area covered by the marker (e.g., 10 square meters)
     var referenceMarkerAreaMeters = 10000;
@@ -99,36 +110,38 @@ function hideNavbar() {
             position: {lat: 50.73915117392608, lng: -3.5321559167578185},
             name: 'Solar Panels',
             points: '40pts',
-            iconUrl: "{% static 'map/images/question.png' %}"
+          
         },
         {
             position: {lat: 50.73790624788057, lng: -3.5348910304944403},
             name: 'Greenhouse',
             points: '20pts',
-            iconUrl: "{% static 'map/images/question.png' %}"
+          
         },
         {
             position: {lat: 50.734110964281584, lng: -3.5374968901137898},
             name: 'Reed Pond',
             points: '60pts',
-            iconUrl: "{% static 'map/images/tick.png' %}"
+          
         },
         {
             position: {lat: 50.73676120857282, lng: -3.532655722516526},
             name: 'CREWW Building',
             points: '30pts',
-            iconUrl: "{% static 'map/images/tick.png' %}"
         },
         // add more
     ];
 
     // Create and display buttons on the map
     buttons.forEach(function(button) {
+        var isCompleted = completedLocations.includes(button.name);
+        var iconUrl = isCompleted ? "{% static 'map/images/tick.png' %}" : "{% static 'map/images/question.png' %}";
+
         var marker = new google.maps.Marker({
             position: button.position,
             map: map,
             icon: {
-                url: button.iconUrl,
+                url: iconUrl,
                 scaledSize: new google.maps.Size(initialMarkerSize, initialMarkerSize)
             }
         });
@@ -153,7 +166,7 @@ function hideNavbar() {
         markers.forEach(function(marker, index) {
             var button = buttons[index];
             marker.setIcon({
-                url: button.iconUrl,
+                url: marker.getIcon().url,
                 scaledSize: new google.maps.Size(newMarkerSize, newMarkerSize),
                 anchor: new google.maps.Point(newMarkerSize / 2, newMarkerSize / 2) 
         });
