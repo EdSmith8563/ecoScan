@@ -26,14 +26,15 @@
     </header>
 
     <div class="container mt-5 pt-5"> 
-        <h1 id="qr-title">Scan A QR Code</h1>
+        <h1 id="qr-title" style="padding-top: 25px;">Scan A QR Code</h1>
     </div>
     <div class="container">
     <div id="video-container">
+        <div id="animation-container"></div>
         <canvas id="canvas" class="canvas" hidden></canvas>
         <video id="video-element" autoplay></video>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
     <script>
         const video = document.getElementById('video-element');
         const canvasElement = document.getElementById('canvas');
@@ -67,6 +68,14 @@
             .catch(function(error) {
                 console.error('Error accessing the camera:', error);
             });
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('animation-container'), // Required
+            path: "{% static 'camera/images/scan.json' %}", // Required
+            renderer: 'svg', // Required
+            loop: true, // Optional
+            autoplay: true, // Optional
+            name: "Hello World", // Name for future reference. Optional.
+        });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
