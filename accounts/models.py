@@ -25,8 +25,6 @@ class UserLocation(models.Model):
     points_obtained = models.IntegerField(default=0)
     questions_answered_right = models.IntegerField(default=0)
 
-    class Meta:
-        unique_together = ('user', 'location')
     def __str__(self):
         # Access the username through the user profile's user field
         username = self.user.user.username
