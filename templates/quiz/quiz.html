@@ -15,8 +15,9 @@
     <div class="container mt-5">
         <div class="quiz-container bg-secondary p-4 rounded">
             <h2 class="text-center mb-4">{{ quiz.title }}</h2>
-            <form action="{% url 'quiz1_submit' %}" method="POST" class="needs-validation" novalidate>
+            <form action="{% url 'quiz_submit' %}" method="POST" class="needs-validation" novalidate>
                 {% csrf_token %}
+                <input type="hidden" name="quiz_title" value="{{ quiz.title }}"> 
                 {% for question in quiz.questions.all %}
                 <div class="question">
                     <h3>{{ question.text }}</h3>
