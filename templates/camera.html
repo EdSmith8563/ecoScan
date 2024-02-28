@@ -39,7 +39,6 @@
         const video = document.getElementById('video-element');
         const canvasElement = document.getElementById('canvas');
         const canvas = canvasElement.getContext('2d', { willReadFrequently: true });
-
         function scanQRCode() {
             if (video.readyState === video.HAVE_ENOUGH_DATA) {
                 canvasElement.hidden = false;
@@ -74,7 +73,6 @@
             renderer: 'svg', // Required
             loop: true, // Optional
             autoplay: true, // Optional
-            name: "Hello World", // Name for future reference. Optional.
         });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
