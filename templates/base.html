@@ -38,8 +38,9 @@
             <div class="welcome-text">
                 {% block content %}
                 {% if user.is_authenticated %}
-                Welcome {{ user.username }}!</div>
-                <hr class="separator"></div>
+                Welcome {{ user.username }}!
+            </div>
+                <hr class="separator">
                 <h2 class="text-center">You are level {{ user.profile.level }} <img src="{% static '/accounts/rank_image/'|add:request.user.profile.rank_image %}" alt="Rank" class="rank-icon"></h2>
                 <div class="table-container">
                     <div class="row">

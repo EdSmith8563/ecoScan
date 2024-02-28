@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'map',
     'accounts',
     'camera',
+    'about',
     "django_extensions",
 ]
 
