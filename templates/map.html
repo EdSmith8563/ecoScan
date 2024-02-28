@@ -45,37 +45,37 @@
     </script>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
-    // Accessing the JSON data directly without using JSON.parse
-    var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
+   
+        var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
 
-    // Now you can use `completedLocations` in your JavaScript code, for example, in your initMap function
-});
-    function showNavbar() {
-    var navbar = document.querySelector('.navbar');
-    navbar.classList.add("navbar-show");
+        
+        });
+            function showNavbar() {
+            var navbar = document.querySelector('.navbar');
+            navbar.classList.add("navbar-show");
 
-    var menuIcon = document.getElementById("menu-icon");
-    menuIcon.style.visibility = "hidden"; 
-    setTimeout(function() {
-        menuIcon.style.visibility = "visible"; // Show the menu-icon again after 3 seconds
-    }, 3000);
-}
+            var menuIcon = document.getElementById("menu-icon");
+            menuIcon.style.visibility = "hidden"; 
+            setTimeout(function() {
+                menuIcon.style.visibility = "visible"; 
+            }, 3000);
+        }
 
-function hideNavbar() {
-    var navbar = document.querySelector('.navbar');
-    setTimeout(function() {
-        navbar.classList.remove("navbar-show");
-    }, 3000);
-}
+        function hideNavbar() {
+            var navbar = document.querySelector('.navbar');
+            setTimeout(function() {
+                navbar.classList.remove("navbar-show");
+            }, 3000);
+        }
     function initMap() {
         var initialZoom = window.innerWidth < 768 ? 14.5 : 15.5;
-        var minZoom = 14.5; // Set your minimum zoom level
+        var minZoom = 14.5; 
         var maxZoom = 18.5;
         var bounds = {
-            north: 50.73731688079953 + 0.005, // Set the northern latitude boundary
-            south: 50.73731688079953 - 0.01, // Set the southern latitude boundary
-            east: -3.534997163291077 + 0.01, // Set the eastern longitude boundary
-            west: -3.534997163291077 - 0.01 // Set the western longitude boundary
+            north: 50.73731688079953 + 0.005, 
+            south: 50.73731688079953 - 0.01, 
+            east: -3.534997163291077 + 0.01, 
+            west: -3.534997163291077 - 0.01 
         };
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -108,7 +108,7 @@ function hideNavbar() {
     var buttons = [
         {
             position: {lat: 50.73915117392608, lng: -3.5321559167578185},
-            name: 'Solar Panels',
+            name: 'Car Park B',
             points: '40pts',
         },
         {
