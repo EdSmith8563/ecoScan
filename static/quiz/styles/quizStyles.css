@@ -1,0 +1,78 @@
+
+.question { display: none; }
+.visible { display: block !important; }
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 0;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    border: 2px solid #adb5bd;
+}
+.form-check {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+.quiz-container .question h3 {
+    font-weight: 700;
+}
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border:none;
+}
+
+.form-check-input:checked:after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: #f8f9fa;
+}
+.exit-button {
+    margin-left: auto;
+    z-index: 9999;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.form-check-label {
+    font-size: 1.1rem;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+@media (max-width: 768px) {
+    .form-check-label {
+        font-size: 1.1rem;
+        vertical-align: middle;
+        word-wrap: break-word;
+        margin-left: 10%;
+    }
+    .form-check-input {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .quiz-container .question h3 {
+        font-size: 16px !important;
+    }
+
+    .container-fluid {
+        width: 90% !important;
+        margin: auto; 
+    }
+}

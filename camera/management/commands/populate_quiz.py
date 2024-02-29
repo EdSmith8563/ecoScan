@@ -209,6 +209,108 @@ class Command(BaseCommand):
                     }
                 ]
             },
+            {
+                "title": "East Park",
+                "questions": [
+                    {
+                        "text": "Which sustainable building certification did East Park aim for, reflecting its commitment to environmental responsibility?",
+                        "answers": [
+                            {"text": "LEED Platinum", "is_correct": False},
+                            {"text": "BREEAM Excellent", "is_correct": True},
+                            {"text": "Green Globes", "is_correct": False},
+                            {"text": "Living Building Challenge", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What percentage of on-site waste was recycled during the construction of East Park?",
+                        "answers": [
+                            {"text": "60%", "is_correct": False},
+                            {"text": "75%", "is_correct": False},
+                            {"text": "85%", "is_correct": False},
+                            {"text": "90%", "is_correct": True}
+                        ]
+                    },
+                    {
+                        "text": "Which of the following is NOT a feature of East Park's sustainable design?",
+                        "answers": [
+                            {"text": "Including A or A+ rated appliances and low energy fittings", "is_correct": False},
+                            {"text": "Recycling 100% of the waste generated on site", "is_correct": True},
+                            {"text": "Providing high levels of insulation", "is_correct": False},
+                            {"text": "Incorporating green materials with high environmental ratings", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What is the primary purpose of the green spine in the layout of East Park?",
+                        "answers": [
+                            {"text": "To provide a central area for vehicle access", "is_correct": False},
+                            {"text": "To connect all levels of the residences", "is_correct": True},
+                            {"text": "To serve as a barrier between different residential terraces", "is_correct": False},
+                            {"text": "To create a space for large community events", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "How does East Park promote social interaction and prevent isolation among its residents?",
+                        "answers": [
+                            {"text": "By limiting access to shared spaces", "is_correct": False},
+                            {"text": "By providing private spaces only", "is_correct": False},
+                            {"text": "By making the entire site fully accessible", "is_correct": True},
+                            {"text": "By discouraging community activities", "is_correct": False}
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Wellbeing Services Facility",
+                "questions": [
+                    {
+                        "text": "How much energy was saved during the construction of the Wellbeing Services Facility compared to traditional methods?",
+                        "answers": [
+                            {"text": "23%", "is_correct": False},
+                            {"text": "40%", "is_correct": False},
+                            {"text": "67%", "is_correct": True},
+                            {"text": "80%", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What is one feature of the Wellbeing Services Facility that contributes to its sustainable design?",
+                        "answers": [
+                            {"text": "Inclusion of energy-intensive appliances", "is_correct": False},
+                            {"text": "Use of air-permeable materials", "is_correct": True},
+                            {"text": "Minimal insulation", "is_correct": False},
+                            {"text": "No consideration for waste management", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Where is the Wellbeing Services Facility located in relation to existing wellbeing services on campus?",
+                        "answers": [
+                            {"text": "Adjacent to the Forum and Queens", "is_correct": False},
+                            {"text": "Adjacent to Reed Hall and Reed Mews", "is_correct": True},
+                            {"text": "In the heart of the city center", "is_correct": False},
+                            {"text": "At the bottom of Mardon Hill", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What was the primary construction method used for the Wellbeing Services Facility, contributing to its sustainability goals?",
+                        "answers": [
+                            {"text": "Traditional on-site construction", "is_correct": False},
+                            {"text": "Using non-recyclable materials", "is_correct": False},
+                            {"text": "No specific construction method was employed", "is_correct": False},
+                            {"text": "Off-site construction with Modern Methods of Construction (MMC)", "is_correct": True},
+                        ]
+                    },
+                     {
+                        "text": "How does the Wellbeing Services Facility aim to support students' mental health?",
+                        "answers": [
+                            {"text": "By providing only physical health services", "is_correct": False},
+                            {"text": "By offering confidential spaces for counselling sessions", "is_correct": True},
+                            {"text": "By organizing social events outside the facility", "is_correct": False},
+                            {"text": "By limiting access to appointments", "is_correct": False}
+                        ]
+                    }
+                ]
+            }
+
+
         ]
 
         for quiz_data in quizzes_data:
