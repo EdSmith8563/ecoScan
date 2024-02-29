@@ -1,13 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth.models import User
 from map.models import Location
 
+# Defines a UserProfile model that extends models.Model
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     total_points = models.IntegerField(default=0)
     def __str__(self):
         return self.user.username
     
+    # Calculates the user's level based on their total points
     def level(self):
         levels = [25, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800]
         for i, threshold in enumerate(levels, 1):
@@ -15,10 +17,12 @@ class UserProfile(models.Model):
                 return i
         return len(levels) + 1
     
+    # Determines the rank image based on the user's level
     def rank_image(self):
         level = self.level()
         return f'rank_{level}.png' if level <= 12 else 'rank_12.png'
 
+# Defines a UserLocation model to store locations associated with a user
 class UserLocation(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
@@ -26,15 +30,11 @@ class UserLocation(models.Model):
     questions_answered_right = models.IntegerField(default=0)
 
     def __str__(self):
-        # Access the username through the user profile's user field
         username = self.user.user.username
-        # Access the location name directly
         location_name = self.location.name
-        # Return the formatted string
         return f"{username} - {location_name}"
         
-
-
+# Defines a UserAchievement model to store achievements that can be earned by users
 class UserAchievement(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()

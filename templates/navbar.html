@@ -8,9 +8,9 @@
     <style>
         /* CSS for the phone icon */
         .phone-icon {
-            width: 30px; /* Adjust the width as needed */
-            height: auto; /* Maintain aspect ratio */
-            margin-left: 0px; /* Adjust spacing between the icon and the text */
+            width: 30px; 
+            height: auto; 
+            margin-left: 0px; 
 
         }
         .nav-link {
@@ -82,7 +82,6 @@
             event.stopPropagation(); // Prevent event propagation
             $('body').toggleClass('light-mode');
             $('.dropdown-menu').toggleClass('dropdown-menu-light');
-            // Additional theme switch actions here
         });
         
         // Event listener to prevent dropdown menu from closing when clicking inside the dropdown
@@ -108,7 +107,7 @@
 
         // Event listener to close the dropdown menu when clicking outside of it
         $(document).on('click touchstart', function(event) {
-            $('.navbar-collapse').collapse('hide'); // Close navbar collapse if open
+            $('.navbar-collapse').collapse('hide'); 
         });
 
         // Event listener to toggle the dropdown menu when clicking the dropdown toggle

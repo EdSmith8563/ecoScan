@@ -8,23 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/styles/baseStyles.css' %}">
-    <!-- Custom CSS -->
-    <style>
-        .cookie-consent-banner {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: rgba(52, 58, 64, 0.9); /* Dark background with opacity */
-            color: white;
-            text-align: center;
-            padding: 10px;
-            z-index: 1000;
-        }
 
-        .cookie-consent-banner button {
-            margin-top: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -55,18 +39,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Add your table rows here -->
+                            {% for quiz in user_quizzes %}
                             <tr>
-                                <td>Reed Pond</td>
-                                <td>6/6</td>
-                                <td>60</td>
+                                <td>{{ quiz.location.name }}</td>
+                                <td>{{ quiz.questions_answered_right }}</td>
+                                <td>{{ quiz.points_obtained }}</td>
                             </tr>
-                            <tr>
-                                <td>CREWW Building</td>
-                                <td>3/6</td>
-                                <td>30</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -81,28 +60,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Add your table rows here -->
-                            <tr>
-                                <td>Sholto Bayley</td>
-                                <td>5</td>
-                                <td>110</td>
+                            {% for profile in leaderboard %}
+                            <tr class="{% if user.is_authenticated and profile.user == user %}lighter-row{% endif %}">
+                                <td>{{ profile.user.username }}</td>
+                                <td>{{ profile.total_locations_discovered }}</td>
+                                <td>{{ profile.total_points }}</td>
                             </tr>
-                            <tr>
-                                <td>You</td>
-                                <td>2</td>
-                                <td>90</td>
-                            </tr>
-                            <tr>
-                                <td>Nathan De Beer</td>
-                                <td>4</td>
-                                <td>80</td>
-                            </tr>
-                            <tr>
-                                <td>Nicky Prowse</td>
-                                <td>3</td>
-                                <td>60</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

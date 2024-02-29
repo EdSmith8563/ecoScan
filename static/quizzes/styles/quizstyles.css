@@ -9,7 +9,7 @@ body, html {
     border-radius: 8px;
     margin: auto;
     width: 100%;
-    max-width: 600px; /* Adjust width as needed */
+    max-width: 600px; 
 }
 .question {
     display: none;
@@ -21,18 +21,18 @@ body, html {
 .form-check {
     margin-bottom: 1rem;
     padding: 0.5rem;
-    background-color: #444; /* Slightly lighter than the container for contrast */
+    background-color: #444; 
     border-radius: 0.5rem;
 }
 .form-check-input {
     margin-top: 0.3rem;
     margin-right: 1rem;
-    accent-color: #ADFF2F; /* Customize radio button color */
+    accent-color: #ADFF2F; 
     width: 20px;
-    height: 20px; /* Increase size of radio buttons */
+    height: 20px; 
 }
 .form-check-label {
-    font-size: 1.2rem; /* Increase label font size */
+    font-size: 1.2rem;
     display: inline-block;
     vertical-align: top;
     cursor: pointer;

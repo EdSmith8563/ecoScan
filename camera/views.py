@@ -3,70 +3,74 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import UserProfile, UserLocation, Location
 from django.db.models import F
 from .models import *
-from django.contrib import messages
 from django.http import HttpResponseBadRequest
 
+# Ensures that only authenticated users can access the camera view and quizzes
+@login_required
 def camera(request):
     return render(request, 'camera.html')
 @login_required
 def quiz1(request):
-    quiz = get_object_or_404(Quiz, title='CREWW Building')  # Adjust the title as necessary
+    quiz = get_object_or_404(Quiz, title='CREWW Building')  
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
 @login_required
 def quiz2(request):
-    quiz = get_object_or_404(Quiz, title='Car Park B')  # Adjust the title as necessary
+    quiz = get_object_or_404(Quiz, title='Car Park B') 
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
+@login_required
 def quiz3(request):
     quiz = get_object_or_404(Quiz, title='Greenhouse')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz4(request):
     quiz = get_object_or_404(Quiz, title='Reed Pond')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
+@login_required
 def quiz5(request):
     quiz = get_object_or_404(Quiz, title='East Park')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz6(request):
     quiz = get_object_or_404(Quiz, title='Wellbeing Services Facility')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz7(request):
     quiz = get_object_or_404(Quiz, title='Taddiforde Valley')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz8(request):
     quiz = get_object_or_404(Quiz, title='Pine Tree Belt')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
+@login_required
 def quiz9(request):
     quiz = get_object_or_404(Quiz, title='Field above Car Park B')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz10(request):
     quiz = get_object_or_404(Quiz, title='Laver Pond')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz11(request):
     quiz = get_object_or_404(Quiz, title='Plantation')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
-
+@login_required
 def quiz12(request):
     quiz = get_object_or_404(Quiz, title='Poole Gate')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
 
-
+# Handles quiz submission
 @login_required
 def quiz_submit(request):
     if request.method == 'POST':
@@ -78,7 +82,6 @@ def quiz_submit(request):
         quiz = get_object_or_404(Quiz, title=quiz_title)
         user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
         
-        # Assume each quiz is linked to a location via a ForeignKey or similar
         location = get_object_or_404(Location, name=quiz_title)
 
         points_for_this_quiz = 0
