@@ -1,45 +1,63 @@
 body {
     background-color: #272727;
-    color: #fff; /* Set text color to white */
-    padding-top: 70px; /* Add padding to account for the fixed navbar */
-    font-family: 'Arial', sans-serif; /* Set font-family to sans-serif */
+    color: #fff; 
+    padding-top: 70px; 
+    font-family: 'Arial', sans-serif; 
 }
 .navbar-nav .nav-link {
-    font-size: 100%; /* Adjust the font size as needed */
+    font-size: 100%; 
+}
+.welcome-text {
+    font-size: 3rem; 
+    text-align: center; 
+    margin-bottom: 0.5%;
 }
 
-.welcome-text {
-    font-size: 3rem; /* Set font size to 3rem (adjust as needed) */
-    text-align: center; /* Center the text */
-    margin-bottom: 0.5%;
+/* Cookie banner */
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(52, 58, 64, 0.9); 
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 100;
+}
+.cookie-consent-banner button {
+    margin-top: 10px;
+}
+
+.table-container{
+    height: 100vh;
 }
 
 /* Navbar */
 .navbar {
-    font-family: 'Arial', sans-serif; /* Set font-family to sans-serif */
+    font-family: 'Arial', sans-serif; 
 }
 #text-container {
-    position: fixed; /* Fix the position to prevent pushing the map */
-    top: 2%; /* Align to the top */
-    left: 0; /* Align to the left */
+    position: fixed; 
+    top: 2%;
+    left: 0; 
     width: 100vw;
-    height: 100vh; /* Fill the entire viewport height */
+    height: 100vh; 
     padding: 0;
     color: white;
     font-family: Arial, sans-serif;
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box; 
     text-align: center;
 }
 .separator {
     width: 100%;
-    height: 4px; /* Specify the height of the separator */
+    height: 4px; 
     margin-top: 2px;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #00027a, #0004ff, #00ebfc,#0004ff,#00027a ); /* Blue gradient */
-    animation: flowing 8s linear infinite; /* Flowing animation */
-    background-size: 200% 100%; /* Set the initial background size for animation */
-    background-position: 0% 0; /* Set initial background position for animation */
-    border: none; /* Remove border */
+    background: linear-gradient(to right, #00027a, #0004ff, #00ebfc,#0004ff,#00027a ); 
+    animation: flowing 8s linear infinite;
+    background-size: 200% 100%;
+    background-position: 0% 0; 
+    border: none; 
     box-shadow: 0 0 10px rgba(154, 154, 154, 0.467);
 }
 
@@ -48,19 +66,17 @@ body {
     0% { background-position: 0% 0; }
     100% { background-position: 200% 0; }
 }
-.table-container {
-    margin-top: 20px; /* Add some margin between the separator and the table */
-    padding: 0 20px; /* Add padding to the table container */
-    overflow-y: auto; /* Add horizontal scroll if needed */
-}
 
+.table-container {
+    margin-top: 20px; 
+    padding: 0 20px; 
+    overflow-y: auto; 
+}
 .table {
-    position: relative; /* Add position relative to contain pseudo-elements */
-    width: 100%; /* Make the table fill the container */
+    position: relative; 
+    width: 100%; 
     background: linear-gradient(0deg, #000, #272727);
 }
-
-/* Center-align text in table cells */
 .table td {
     border-radius: 4px;
     color: rgb(227, 227, 227);
@@ -69,7 +85,6 @@ body {
     text-shadow: 0 1px 0 #000;
     font-size: large;
 }
-
 .table th {
     border-radius: 4px;
     color: rgb(227, 227, 227);
@@ -78,10 +93,9 @@ body {
     text-shadow: 0 1px 0 #000;
     font-size: large;
 }
-.lighter-row td {
-    background-color: #323232; /* Define the lighter color for the cells */
+.lighter-row {
+    background-color: #323232;
 }
-
 .table:before,
 .table:after {
     content: '';
@@ -95,7 +109,7 @@ body {
     z-index: -1;
     animation: steam 40s linear infinite;
     -webkit-animation: steam 40s linear infinite;
-    border-radius: 6px; /* Adjust border-radius for desired thickness */
+    border-radius: 6px; 
     transform: translate3d(0,0,0);
 }
 
@@ -123,29 +137,30 @@ body {
 }
 
 .table:after {
-    filter: blur(20px); /* Adjust blur value for the desired effect */
+    filter: blur(20px); 
 }
+
 /* CSS for the phone icon */
 .phone-icon {
-    width: 30px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-left: 0px; /* Adjust spacing between the icon and the text */
+    width: 30px; 
+    height: auto; 
+    margin-left: 0px; 
 
 }
 
 .rank-icon {
-width: 40px; /* Adjust the width as needed */
-height: auto; /* Maintain aspect ratio */
+width: 40px;
+height: auto;
 vertical-align: top;
 }
 /* Styles for screens less than 600px wide */
 @media (max-width: 600px) {
     .rank-icon {
-      width: 40px; /* Set to a size that is visible on small screens */
-      /* other styles if needed */
+      width: 40px; 
     }
   }
-/* Settings Dropdown Menu Styles */
+
+  /* Settings Dropdown Menu Styles */
 .dropdown-menu {
     background-color: #272727;
     border-color: #fff;
@@ -153,89 +168,72 @@ vertical-align: top;
     color: #fff;
     box-shadow: 0px 0px 15px white;
 }
-
 .dropdown-menu .dropdown-item {
-    color: #fff; /* White text color for items */
+    color: #fff; 
 }
-
 .dropdown-menu .dropdown-item:hover {
-    background-color: #787575; /* Slightly lighter background on hover */
+    background-color: #787575; 
 }
 
 /* Dark mode styles */
 .dark-mode {
-    background-color: #121212; /* Dark background for dark mode */
-    color: #ffffff; /* Light text for dark mode */
+    background-color: #121212; 
+    color: #ffffff; 
 }
-
 .dark-mode .navbar {
-    background-color: #272727; /* Darker navbar for dark mode */
+    background-color: #272727; 
 }
-
 .dark-mode .table {
-    background-color: #333; /* Darker table background for dark mode */
+    background-color: #333; 
 }
 
 /* Light mode styles */
 .light-mode {
-    background-color: #ffffff; /* Light background for light mode */
-    color: #000000; /* Dark text for light mode */
+    background-color: #ffffff; 
+    color: #000000; 
 }
-
 .light-mode .navbar {
-    background-color: #f8f9fa; /* Lighter navbar for light mode */
+    background-color: #f8f9fa; 
 }
-
 .light-mode .table {
-    background-color: #ffffff; /* Lighter table background for light mode */
-    color: #000000; /* Dark text for light mode */
+    background-color: #ffffff; 
+    color: #000000;
 }
-
 .light-mode .nav-link,
 .light-mode .dropdown-item {
     color: #000000;
 }
-
 .light-mode .dropdown-menu {
-    background-color: #ffffff; /* Light background for light mode */
-    color: #000000; /* Dark text for light mode */
+    background-color: #ffffff; 
+    color: #000000; 
     border-color: #000000;
     border-radius: 2px;
     box-shadow: 0px 0px 15px rgb(0, 0, 0);
 }
 
 /* Form Styles */
-/* Hover and active animation for the button */
 .btn-animate {
     transition: background-color 0.3s, transform 0.2s;
 }
-
 .btn-animate:hover {
-    background-color: #0056b3; /* Darker shade when hovered */
-    transform: translateY(-3px); /* Slight move up */
+    background-color: #0056b3; 
+    transform: translateY(-3px); 
 }
-
 .btn-animate:active {
-    background-color: #004080; /* Even darker shade when pressed */
-    transform: translateY(1px); /* Slight move down */
+    background-color: #004080; 
+    transform: translateY(1px); 
 }
-
-/* Add some space between form elements */
 .form-group.mb-2 {
-    margin-bottom: 0.5rem !important; /* Less space between inputs */
+    margin-bottom: 0.5rem !important;
 }
-
 .form-group.mt-3 {
-    margin-top: 1rem !important; /* More space above the button */
+    margin-top: 1rem !important; 
 }
-
-/* Reduce the size of the help text */
 .form-text {
-    width: 100%; /* Ensures the text takes the full width of its parent */
-    font-size: 0.75rem; /* Adjust font size as needed */
-    white-space: normal; /* Ensure the text wraps and doesn't overflow */
+    width: 100%; 
+    font-size: 0.75rem; 
+    white-space: normal; 
 }
-
 .form-text ul {
     list-style-type: none;
 }
@@ -243,7 +241,6 @@ vertical-align: top;
 .signup-text {
     font-size: 0.35em;
 }
-
 .signup-link {
     text-decoration: underline;
 }

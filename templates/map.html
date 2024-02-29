@@ -11,7 +11,6 @@
 </head>
 <body>
     <header>
-                <!-- Include Navbar -->
                 {% include 'navbar.html' %}
     </header>
 
@@ -32,7 +31,6 @@
                 <p>30pts</p>
             </div>
         </div>
-        <!-- Add more content here as needed -->
     </div>
     <button id="menu-icon" class="menu-icon" onclick="showNavbar()" onmouseover="showNavbar()" onmouseout="hideNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
     <div id="map-container">
@@ -40,25 +38,21 @@
     </div>
     {{ completed_locations|json_script:"completedLocationsData" }}
     <script>
-        // Parse the JSON data into the completedLocations variable
         var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
     </script>
     <script>
-    document.addEventListener("DOMContentLoaded", function(){
-   
-        var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
+        document.addEventListener("DOMContentLoaded", function(){
+            var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
+            });
+        function showNavbar() {
+        var navbar = document.querySelector('.navbar');
+        navbar.classList.add("navbar-show");
 
-        
-        });
-            function showNavbar() {
-            var navbar = document.querySelector('.navbar');
-            navbar.classList.add("navbar-show");
-
-            var menuIcon = document.getElementById("menu-icon");
-            menuIcon.style.visibility = "hidden"; 
-            setTimeout(function() {
-                menuIcon.style.visibility = "visible"; 
-            }, 3000);
+        var menuIcon = document.getElementById("menu-icon");
+        menuIcon.style.visibility = "hidden"; 
+        setTimeout(function() {
+            menuIcon.style.visibility = "visible"; 
+        }, 3000);
         }
 
         function hideNavbar() {
@@ -67,167 +61,159 @@
                 navbar.classList.remove("navbar-show");
             }, 3000);
         }
-    function initMap() {
-        var initialZoom = window.innerWidth < 768 ? 14.5 : 15.5;
-        var minZoom = 14.5; 
-        var maxZoom = 18.5;
-        var bounds = {
-            north: 50.73731688079953 + 0.005, 
-            south: 50.73731688079953 - 0.01, 
-            east: -3.534997163291077 + 0.01, 
-            west: -3.534997163291077 - 0.01 
-        };
+        function initMap() {
+            var initialZoom = window.innerWidth < 768 ? 14.5 : 15.5;
+            var minZoom = 14.5; 
+            var maxZoom = 18.5;
+            var bounds = {
+                north: 50.73731688079953 + 0.005, 
+                south: 50.73731688079953 - 0.01, 
+                east: -3.534997163291077 + 0.01, 
+                west: -3.534997163291077 - 0.01 
+            };
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 50.73731688079953, lng: -3.534997163291077},
-        mapTypeId: 'satellite',
-        zoom: initialZoom,
-        minZoom: minZoom,
-        maxZoom: maxZoom,
-        restriction: {
-            latLngBounds: bounds,
-            strictBounds: false
-        },
-        mapTypeControl: false, // Disable the map type control
-        fullscreenControl: false,
-    });
-    map.setTilt(0);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 50.73731688079953, lng: -3.534997163291077},
+                mapTypeId: 'satellite',
+                zoom: initialZoom,
+                minZoom: minZoom,
+                maxZoom: maxZoom,
+                restriction: {
+                    latLngBounds: bounds,
+                    strictBounds: false
+                },
+                mapTypeControl: false, 
+                fullscreenControl: false,
+            });
+            map.setTilt(0);
+        
+            // Define the reference physical area covered by the marker 
+            var referenceMarkerAreaMeters = 10000;
 
-    // Define the button icon image
-   
+            // Calculate the initial pixel size of the marker based on the reference area and the map's initial zoom level
+            var initialMarkerSize = calculateMarkerSize(referenceMarkerAreaMeters, map.getZoom());
 
-    // Define the reference physical area covered by the marker (e.g., 10 square meters)
-    var referenceMarkerAreaMeters = 10000;
+            var markers = [];
 
-    // Calculate the initial pixel size of the marker based on the reference area and the map's initial zoom level
-    var initialMarkerSize = calculateMarkerSize(referenceMarkerAreaMeters, map.getZoom());
+            var buttons = [
+                {
+                    position: {lat: 50.73915117392608, lng: -3.5321559167578185},
+                    name: 'Car Park B',
+                    points: '40pts',
+                },
+                {
+                    position: {lat: 50.73790624788057, lng: -3.5348910304944403},
+                    name: 'Greenhouse',
+                    points: '20pts',
+                },
+                {
+                    position: {lat: 50.734110964281584, lng: -3.5374968901137898},
+                    name: 'Reed Pond',
+                    points: '60pts',
+                },
+                {
+                    position: {lat: 50.73676120857282, lng: -3.532655722516526},
+                    name: 'CREWW Building',
+                    points: '30pts',
+                },
+                {
+                    position: {lat: 50.73713813396492, lng: -3.5274834794356487},
+                    name: 'East Park',
+                    points: '40pts',
+                },
+                {
+                    position: {lat: 50.73667086336443, lng: -3.5378035730211206},
+                    name: 'Wellbeing Services Facility',
+                    points: '20pts',
+                },
+                {
+                    position: {lat: 50.73877216977989, lng: -3.5295009409546347},
+                    name: 'Taddiforde Valley',
+                    points: '60pts',
+                },
+                {
+                    position: {lat: 50.738555723132905, lng: -3.533661282297735},
+                    name: 'Pine Tree Belt',
+                    points: '30pts',
+                },
+                {
+                    position: {lat: 50.740468509998045, lng: -3.529858554346014},
+                    name: 'Field Above Car Park B',
+                    points: '40pts',
+                },
+                {
+                    position: {lat: 50.737001535028305, lng: -3.5340949573898555},
+                    name: 'Laver Pond',
+                    points: '20pts',
+                },
+                {
+                    position: {lat: 50.73631416672433, lng: -3.533085721388993}, 
+                    name: 'Plantation',
+                    points: '60pts',
+                },
+                {
+                    position: {lat: 50.73382888453576, lng: -3.5338409034804577},
+                    name: 'Poole gate',
+                    points: '30pts',
+                },
+            ];
 
-    // Define the marker variable outside the loop
-    var markers = [];
+            // Create and display buttons on the map
+            buttons.forEach(function(button) {
+                var isCompleted = completedLocations.includes(button.name);
+                var iconUrl = isCompleted ? "{% static 'map/images/tick.png' %}" : "{% static 'map/images/question.png' %}";
 
-    var buttons = [
-        {
-            position: {lat: 50.73915117392608, lng: -3.5321559167578185},
-            name: 'Car Park B',
-            points: '40pts',
-        },
-        {
-            position: {lat: 50.73790624788057, lng: -3.5348910304944403},
-            name: 'Greenhouse',
-            points: '20pts',
-        },
-        {
-            position: {lat: 50.734110964281584, lng: -3.5374968901137898},
-            name: 'Reed Pond',
-            points: '60pts',
-        },
-        {
-            position: {lat: 50.73676120857282, lng: -3.532655722516526},
-            name: 'CREWW Building',
-            points: '30pts',
-        },
-        {
-            position: {lat: 50.73713813396492, lng: -3.5274834794356487},
-            name: 'East Park',
-            points: '40pts',
-        },
-        {
-            position: {lat: 50.73667086336443, lng: -3.5378035730211206},
-            name: 'Wellbeing Services Facility',
-            points: '20pts',
-        },
-        {
-            position: {lat: 50.73877216977989, lng: -3.5295009409546347},
-            name: 'Taddiforde Valley',
-            points: '60pts',
-        },
-        {
-            position: {lat: 50.738555723132905, lng: -3.533661282297735},
-            name: 'Pine Tree Belt',
-            points: '30pts',
-        },
-        {
-            position: {lat: 50.740468509998045, lng: -3.529858554346014},
-            name: 'Field Above Car Park B',
-            points: '40pts',
-        },
-        {
-            position: {lat: 50.737001535028305, lng: -3.5340949573898555},
-            name: 'Laver Pond',
-            points: '20pts',
-        },
-        {
-            position: {lat: 50.73631416672433, lng: -3.533085721388993}, 
-            name: 'Plantation',
-            points: '60pts',
-        },
-        {
-            position: {lat: 50.73382888453576, lng: -3.5338409034804577},
-            name: 'Poole gate',
-            points: '30pts',
-        },
+                var marker = new google.maps.Marker({
+                    position: button.position,
+                    map: map,
+                    icon: {
+                        url: iconUrl,
+                        scaledSize: new google.maps.Size(initialMarkerSize, initialMarkerSize)
+                    }
+                });
 
-        // add more
-    ];
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<h3>' + button.name + '</h3><p>' + button.points + '</p>'
+                });
 
-    // Create and display buttons on the map
-    buttons.forEach(function(button) {
-        var isCompleted = completedLocations.includes(button.name);
-        var iconUrl = isCompleted ? "{% static 'map/images/tick.png' %}" : "{% static 'map/images/question.png' %}";
+                marker.addListener('mouseover', function() {
+                    infowindow.open(map, marker);
+                });
 
-        var marker = new google.maps.Marker({
-            position: button.position,
-            map: map,
-            icon: {
-                url: iconUrl,
-                scaledSize: new google.maps.Size(initialMarkerSize, initialMarkerSize)
-            }
-        });
+                marker.addListener('mouseout', function() {
+                    infowindow.close();
+                });
+                markers.push(marker);
+            });
 
-        var infowindow = new google.maps.InfoWindow({
-            content: '<h3>' + button.name + '</h3><p>' + button.points + '</p>'
-        });
-
-        marker.addListener('mouseover', function() {
-            infowindow.open(map, marker);
-        });
-
-        marker.addListener('mouseout', function() {
-            infowindow.close();
-        });
-        markers.push(marker);
-    });
-
-    map.addListener('zoom_changed', function() {
-        var currentZoom = map.getZoom();
-        var newMarkerSize = calculateMarkerSize(referenceMarkerAreaMeters, currentZoom);
-        markers.forEach(function(marker, index) {
-            var button = buttons[index];
-            marker.setIcon({
-                url: marker.getIcon().url,
-                scaledSize: new google.maps.Size(newMarkerSize, newMarkerSize),
-                anchor: new google.maps.Point(newMarkerSize / 2, newMarkerSize / 2) 
-        });
-    });
-    });
-}
+            map.addListener('zoom_changed', function() {
+                var currentZoom = map.getZoom();
+                var newMarkerSize = calculateMarkerSize(referenceMarkerAreaMeters, currentZoom);
+                markers.forEach(function(marker, index) {
+                    var button = buttons[index];
+                    marker.setIcon({
+                        url: marker.getIcon().url,
+                        scaledSize: new google.maps.Size(newMarkerSize, newMarkerSize),
+                        anchor: new google.maps.Point(newMarkerSize / 2, newMarkerSize / 2) 
+                    });
+                });
+            });
+        }
 
 // Function to calculate marker size based on reference area and zoom level
 function calculateMarkerSize(referenceAreaMeters, zoom) {
-    // Assuming a constant reference area for simplicity
     var earthCircumferenceMeters = 40075016.686;
     var metersPerPixel = earthCircumferenceMeters / (256 * Math.pow(2, zoom));
     var pixelSize = Math.sqrt(referenceAreaMeters / metersPerPixel);
     return pixelSize;
 }
 
-initMap();  // Call the function to initialize the map
+initMap();
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Function to handle theme switch
             $('#themeSwitch').on('change', function(event) {
                 event.stopPropagation(); // Prevent event propagation
                 if ($(this).is(':checked')) {
@@ -257,12 +243,10 @@ initMap();  // Call the function to initialize the map
                 var menuIcon = document.getElementById("menu-icon");
                 menuIcon.style.visibility = "hidden";
                 setTimeout(function() {
-                    menuIcon.style.visibility = "visible"; // Show the menu-icon again after 3 seconds
+                    menuIcon.style.visibility = "visible";
                 }, 3000);
             }
-    
         });
     </script>
-    
 </body>
 </html>

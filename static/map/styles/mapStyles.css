@@ -1,71 +1,63 @@
-/* Reset default margin and padding */
-
-
 body, html {
     margin: 0;
     padding: 0;
 }
+
 body, html, nav, .navbar-brand, .navbar-nav, .nav-link, .container, h1, h2, h3, h4, h5, h6, p, li {
     font-family: Arial, sans-serif !important;
 }
 .navbar.cut-off-left {
-    margin-left: 25%; /* Adjust the value as needed */
+    margin-left: 25%; 
 }
 .navbar {
-    visibility: hidden; /* Initially hide the navbar */
-    opacity: 0; /* Initially set opacity to 0 */
-    transition: visibility 0.5s, opacity 0.5s; /* Smooth transition effect for visibility and opacity */
+    visibility: hidden; 
+    opacity: 0; 
+    transition: visibility 0.5s, opacity 0.5s; 
 }
-
 .navbar-show {
-    visibility: visible; /* Show the navbar */
-    opacity: 1; /* Set opacity to 1 to make it fully visible */
+    visibility: visible; 
+    opacity: 1; 
 }
 
 #menu-icon img{
     width: auto;
     height:5vh;
 }
-
 #menu-icon {
     background: none;
     border: none;
     position: absolute;
     vertical-align: middle;
-    top: 0; /* Adjust as needed */
-    right: 0; /* Adjust as needed */
-    z-index: 9999; /* Ensure the button is above other elements */
+    top: 0; 
+    right: 0; 
+    z-index: 9999; 
 }
 
-/* Set dark grey background for the body */
 body {
     background-color: #272727;
 }
 
-/* Set container to fill the entire height and align to the right */
 #map-container {
     height: 100vh;
     float: right;
     width: 75%;
-    background-color: #272727; /* Dark grey background color */
+    background-color: #272727; 
 }
-
-/* Set map to fill the entire container */
 #map {
     width: 100%;
     height: 100%;
     z-index: 0;
 }
 #text-container {
-    position: fixed; /* Fix the position to prevent pushing the map */
-    top: 2%; /* Align to the top */
-    left: 0; /* Align to the left */
+    position: fixed;
+    top: 2%; 
+    left: 0; 
     width: 25%;
-    height: 100vh; /* Fill the entire viewport height */
+    height: 100vh; 
     padding: 0;
     color: white;
     font-family: Arial, sans-serif;
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box; 
     text-align: center;
 }
 
@@ -105,9 +97,9 @@ body {
 .image-column img {
     padding-left: 10px;
     padding-bottom: 5px;
-    width: auto; /* Set width to auto to maintain aspect ratio */
-    height: auto; /* Set height to auto to maintain aspect ratio */
-    max-width: 80%; /* Limit maximum width to prevent overflow */
+    width: auto; 
+    height: auto; 
+    max-width: 80%; 
     max-height: 80%;
     vertical-align: middle;
 }
@@ -121,7 +113,6 @@ body {
     height: 50px;
     text-align: left;
   }
-
 .points-column {
     width: 25%;
     height: 50px;
@@ -136,29 +127,25 @@ body {
     font-size: 100%;
     height: 100vh;
 }
-  
-  /* Clear floats after the columns */
-  .rows:after {
+.rows:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
 
-/* Separator line */
 .separator {
     width: 100%;
-    height: 4px; /* Specify the height of the separator */
+    height: 4px; 
     margin-top: 10px;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #00027a, #0004ff, #00ebfc,#0004ff,#00027a ); /* Blue gradient */
-    animation: flowing 8s linear infinite; /* Flowing animation */
-    background-size: 200% 100%; /* Set the initial background size for animation */
-    background-position: 0% 0; /* Set initial background position for animation */
-    border: none; /* Remove border */
+    background: linear-gradient(to right, #00027a, #0004ff, #00ebfc,#0004ff,#00027a ); 
+    animation: flowing 8s linear infinite; 
+    background-size: 200% 100%; 
+    background-position: 0% 0;
+    border: none; 
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.321);
 }
 
-/* Animation keyframes for flowing effect */
 @keyframes flowing {
     0% { background-position: 0% 0; }
     100% { background-position: 200% 0; }
@@ -172,70 +159,53 @@ body {
     color: #fff;
     box-shadow: 0px 0px 15px white;
 }
-
 .dropdown-menu .dropdown-item {
-    color: #fff; /* White text color for items */
+    color: #fff; 
 }
-
 .dropdown-menu .dropdown-item:hover {
-    background-color: #787575; /* Slightly lighter background on hover */
+    background-color: #787575;
 }
 
-/* Theme styling */
 /* Light mode styles */
-/* Base light mode styles */
 .light-mode #text-container {
-    background-color: #ffffff; /* Light background for light mode */
-    color: #000000; /* Dark text for light mode */
+    background-color: #ffffff;
+    color: #000000; 
 }
-
-/* Additional light mode styles targeting child elements */
 .light-mode #text-container .text-column,
 .light-mode #text-container .points-column {
-    color: #000000; /* Dark text for light mode */
+    color: #000000; 
 }
-
-/* Ensure navbar does not change color in light mode */
 .navbar {
-    background-color: #272727; /* Keep the original dark navbar color */
+    background-color: #272727; 
 }
-
 /* Ensure navbar links do not change color in light mode */
 .navbar .nav-link,
 .navbar .navbar-brand {
-    color: #ffffff; /* Keep the original light text color */
+    color: #ffffff; 
 }
-
-/* Light mode styles for the left panel and all its children */
 .light-mode #text-container, 
 .light-mode #text-container * {
-    background-color: #ffffff; /* Light background for light mode */
-    color: #000000; /* Dark text for light mode */
+    background-color: #ffffff;
+    color: #000000; 
 }
-
-/* Explicit overrides for specific elements that may have their own background set */
 .light-mode #text-container .rows,
 .light-mode #text-container .image-column,
 .light-mode #text-container .text-column,
 .light-mode #text-container .points-column {
-    background-color: #ffffff; /* Ensure this is the background for light mode */
-    color: #000000; /* Ensure text is black for light mode */
+    background-color: #ffffff; 
+    color: #000000;
 }
-
-/* Explicit overrides for specific elements that may have their own background set */
 .light-mode #text-container .rows {
-    background: #ffffff; /* Override gradient background for light mode */
-    color: #000000; /* Ensure text is black for light mode */
+    background: #ffffff; 
+    color: #000000; 
 }
-
 .light-mode .dropdown-menu {
-    background-color: #ffffff; /* Light background for light mode */
-    color: #000000; /* Dark text for light mode */
+    background-color: #ffffff; 
+    color: #000000;
     border-color: #000000;
     border-radius: 2px;
     box-shadow: 0px 0px 15px rgb(0, 0, 0);
 }
-
 .light-mode .nav-link,
 .light-mode .dropdown-item {
     color: #000000;
