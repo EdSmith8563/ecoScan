@@ -6,7 +6,7 @@
 3. Sholto Bayley
 4. Alexander Seton
 5. Nicky Prowse
-6. Seb White
+6. Sebastian White
 
 # EcoScan
 EcoScan is a web-based django application that was designed to use gamification to promote sustainability on the University of Exeter's streatham campus.
