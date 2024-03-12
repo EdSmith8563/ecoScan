@@ -17,19 +17,8 @@
     <div id="text-container">
         <h1 style="font-weight: bold; font-size: 150%;">Places Discovered</h1>
         <hr class="separator">
-        <div class="rows">
-            <div class="image-column">
-                <p><img src="{% static 'map/images/checked.png' %}" alt="Image"></p>
-                <p><img src="{% static 'map/images/checked.png' %}" alt="Image"></p>
-            </div>
-            <div class="text-column">
-                <p>Reed Pond</p>
-                <p>CREWW Building</p>
-            </div>
-            <div class="points-column">
-                <p>60pts</p>
-                <p>30pts</p>
-            </div>
+        <div id="discovered-places-container" data-checked-img-url="{% static 'map/images/checked.png' %}">
+            <!-- Dynamic content will be inserted here by JavaScript -->
         </div>
     </div>
     <button id="menu-icon" class="menu-icon" onclick="showNavbar()" onmouseover="showNavbar()" onmouseout="hideNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
@@ -37,13 +26,86 @@
         <div id="map"></div>
     </div>
     {{ completed_locations|json_script:"completedLocationsData" }}
+    {{ total_points|json_script:"totalPointsData" }}
     <script>
         var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
-    </script>
-    <script>
+        var totalPoints = JSON.parse(document.getElementById('totalPointsData').textContent);
+        var onPhone = window.innerWidth <= 768;
+        updateDiscoveredPlaces(completedLocations,totalPoints);
+
         document.addEventListener("DOMContentLoaded", function(){
             var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
+            var totalPoints = JSON.parse(document.getElementById('totalPointsData').textContent);
+            updateDiscoveredPlaces(completedLocations,totalPoints);
+            var isTextContainerUp = false; // Flag to track the container's state
+            var textContainer = document.getElementById('text-container');
+
+            // Only add the event listener if the text container exists
+            if (textContainer) {
+                textContainer.addEventListener('click', function() {
+                    if (onPhone) {
+                        textContainer.style.bottom = isTextContainerUp ? '0' : '0';
+                        textContainer.style.height = isTextContainerUp ? '20%' : '60%';
+                        isTextContainerUp = !isTextContainerUp;
+                    }
+                });
+            }
+    
+        });
+        function updateDiscoveredPlaces(completedLocations,totalPoints) {
+            var container = document.getElementById('discovered-places-container');
+            var checkedImgUrl = container.getAttribute('data-checked-img-url');
+            container.innerHTML = ''; 
+
+            completedLocations.forEach(function(location) {
+                var imageColumn = document.createElement('div');
+                imageColumn.className = 'image-column';
+                imageColumn.innerHTML = `<p><img src="${checkedImgUrl}" alt="Image"></p>`;
+
+                var textColumn = document.createElement('div');
+                textColumn.className = 'text-column';
+                textColumn.innerHTML = `<p>${location.name}</p>`;
+
+                var pointsColumn = document.createElement('div');
+                pointsColumn.className = 'points-column';
+                pointsColumn.innerHTML = `<p>+ ${location.points}</p>`;
+
+                var row = document.createElement('div');
+                row.className = 'row';
+            
+                row.appendChild(imageColumn);
+                row.appendChild(textColumn);
+                row.appendChild(pointsColumn);
+
+                container.appendChild(row);
             });
+            var separator = document.createElement('hr');
+            separator.className = 'separator';
+            container.appendChild(separator);
+            // Total Points Row
+            var totalPointsRow = document.createElement('div');
+            totalPointsRow.className = 'row';
+            // Empty Image Column
+            var imageColumnEmpty = document.createElement('div');
+            imageColumnEmpty.className = 'image-column';
+            // Non-breaking space for maintaining layout consistency
+            imageColumnEmpty.innerHTML = `<p>&nbsp;</p>`;
+        
+            var totalPointsLabel = document.createElement('div');
+            totalPointsLabel.className = 'text-column';
+            totalPointsLabel.style.fontWeight = 'bold'; 
+            totalPointsLabel.innerHTML = `<p>Total Points:</p>`;
+
+            var totalPointsValue = document.createElement('div');
+            totalPointsValue.className = 'points-column';
+            totalPointsValue.innerHTML = `<p>&nbsp;&nbsp;&nbsp;${totalPoints}</p>`;
+
+            totalPointsRow.appendChild(imageColumnEmpty);
+            totalPointsRow.appendChild(totalPointsLabel);
+            totalPointsRow.appendChild(totalPointsValue);
+
+            container.appendChild(totalPointsRow);
+        }
         function showNavbar() {
         var navbar = document.querySelector('.navbar');
         navbar.classList.add("navbar-show");
@@ -84,6 +146,9 @@
                 },
                 mapTypeControl: false, 
                 fullscreenControl: false,
+                tiltMapControl: false,
+                zoomControl: !onPhone
+        
             });
             map.setTilt(0);
         
@@ -99,69 +164,59 @@
                 {
                     position: {lat: 50.73915117392608, lng: -3.5321559167578185},
                     name: 'Car Park B',
-                    points: '40pts',
                 },
                 {
                     position: {lat: 50.73790624788057, lng: -3.5348910304944403},
                     name: 'Greenhouse',
-                    points: '20pts',
                 },
                 {
                     position: {lat: 50.734110964281584, lng: -3.5374968901137898},
                     name: 'Reed Pond',
-                    points: '60pts',
                 },
                 {
                     position: {lat: 50.73676120857282, lng: -3.532655722516526},
                     name: 'CREWW Building',
-                    points: '30pts',
                 },
                 {
                     position: {lat: 50.73713813396492, lng: -3.5274834794356487},
                     name: 'East Park',
-                    points: '40pts',
                 },
                 {
                     position: {lat: 50.73667086336443, lng: -3.5378035730211206},
                     name: 'Wellbeing Services Facility',
-                    points: '20pts',
                 },
                 {
                     position: {lat: 50.73877216977989, lng: -3.5295009409546347},
                     name: 'Taddiforde Valley',
-                    points: '60pts',
                 },
                 {
                     position: {lat: 50.738555723132905, lng: -3.533661282297735},
                     name: 'Pine Tree Belt',
-                    points: '30pts',
                 },
                 {
                     position: {lat: 50.740468509998045, lng: -3.529858554346014},
                     name: 'Field Above Car Park B',
-                    points: '40pts',
                 },
                 {
                     position: {lat: 50.737001535028305, lng: -3.5340949573898555},
                     name: 'Laver Pond',
-                    points: '20pts',
                 },
                 {
                     position: {lat: 50.73631416672433, lng: -3.533085721388993}, 
                     name: 'Plantation',
-                    points: '60pts',
                 },
                 {
                     position: {lat: 50.73382888453576, lng: -3.5338409034804577},
                     name: 'Poole gate',
-                    points: '30pts',
                 },
             ];
 
             // Create and display buttons on the map
             buttons.forEach(function(button) {
-                var isCompleted = completedLocations.includes(button.name);
+                var isCompleted = completedLocations.some(location => location.name === button.name);
                 var iconUrl = isCompleted ? "{% static 'map/images/tick.png' %}" : "{% static 'map/images/question.png' %}";
+                var discoveredLocation = completedLocations.find(location => location.name === button.name);
+                var pointsText = isCompleted ? discoveredLocation.points + 'pts' : "Not Discovered";
 
                 var marker = new google.maps.Marker({
                     position: button.position,
@@ -171,9 +226,10 @@
                         scaledSize: new google.maps.Size(initialMarkerSize, initialMarkerSize)
                     }
                 });
+                marker.isInfowindowOpen = false;
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: '<h3>' + button.name + '</h3><p>' + button.points + '</p>'
+                    content: '<h3>' + button.name + '</h3><p>' + pointsText + '</p>'
                 });
 
                 marker.addListener('mouseover', function() {
@@ -182,6 +238,14 @@
 
                 marker.addListener('mouseout', function() {
                     infowindow.close();
+                });
+                marker.addListener('click', function() {
+                    if (marker.isInfowindowOpen) {
+                        infowindow.close();
+                    } else {
+                        infowindow.open(map, marker);
+                    }
+                    marker.isInfowindowOpen = !marker.isInfowindowOpen;
                 });
                 markers.push(marker);
             });
@@ -200,15 +264,15 @@
             });
         }
 
-// Function to calculate marker size based on reference area and zoom level
-function calculateMarkerSize(referenceAreaMeters, zoom) {
-    var earthCircumferenceMeters = 40075016.686;
-    var metersPerPixel = earthCircumferenceMeters / (256 * Math.pow(2, zoom));
-    var pixelSize = Math.sqrt(referenceAreaMeters / metersPerPixel);
-    return pixelSize;
-}
+        // Function to calculate marker size based on reference area and zoom level
+        function calculateMarkerSize(referenceAreaMeters, zoom) {
+            var earthCircumferenceMeters = 40075016.686;
+            var metersPerPixel = earthCircumferenceMeters / (256 * Math.pow(2, zoom));
+            var pixelSize = Math.sqrt(referenceAreaMeters / metersPerPixel);
+            return pixelSize;
+        }
 
-initMap();
+        initMap();
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.db.models import Count
 from .models import UserProfile, UserLocation
+from django.core import serializers
+import json
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
@@ -31,3 +33,4 @@ def home(request):
             'leaderboard': leaderboard,
         }
     return render(request, 'base.html', context)
+
