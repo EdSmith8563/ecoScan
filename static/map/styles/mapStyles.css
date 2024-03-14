@@ -42,12 +42,12 @@ body {
     float: right;
     width: 75%;
     background-color: #272727; 
-    z-index: 1000;
+    z-index: 1001;
 }
 #map {
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 1001;
 }
 #text-container {
     position: fixed;
@@ -60,7 +60,7 @@ body {
     font-family: Arial, sans-serif;
     box-sizing: border-box; 
     text-align: center;
-    z-index: 1001;
+    z-index: 1000;
 }
 
 @media (max-width: 768px) {
@@ -70,6 +70,9 @@ body {
     #map-container {
         width: 100vw!important; 
         z-index: 1000!important;   
+    }
+    #map {
+        z-index: 1000;
     }
 
     #text-container {
@@ -88,6 +91,7 @@ body {
         border-top-right-radius: 20px; 
         transition: height 0.5s ease, bottom 0.5s ease;
         box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
        
     }
     #map-container {
@@ -202,7 +206,8 @@ body {
 .light-mode #text-container .rows,
 .light-mode #text-container .image-column,
 .light-mode #text-container .text-column,
-.light-mode #text-container .points-column {
+.light-mode #text-container .points-column 
+{
     background-color: #ffffff; 
     color: #000000;
 }
@@ -221,3 +226,4 @@ body {
 .light-mode .dropdown-item {
     color: #000000;
 }
+
