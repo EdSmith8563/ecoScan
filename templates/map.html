@@ -114,14 +114,14 @@
         menuIcon.style.visibility = "hidden"; 
         setTimeout(function() {
             menuIcon.style.visibility = "visible"; 
-        }, 3000);
+        }, 4000);
         }
 
         function hideNavbar() {
             var navbar = document.querySelector('.navbar');
             setTimeout(function() {
                 navbar.classList.remove("navbar-show");
-            }, 3000);
+            }, 4000);
         }
         function initMap() {
             var initialZoom = window.innerWidth < 768 ? 14.5 : 15.5;
@@ -144,13 +144,20 @@
                     latLngBounds: bounds,
                     strictBounds: false
                 },
+                tilt: 0,
                 mapTypeControl: false, 
                 fullscreenControl: false,
-                tiltMapControl: false,
+         
                 zoomControl: !onPhone
         
             });
-            map.setTilt(0);
+         
+            var streetView = map.getStreetView();
+
+            // Disable fullscreen option on streetview
+            streetView.setOptions({
+                fullscreenControl: false
+            });
         
             // Define the reference physical area covered by the marker 
             var referenceMarkerAreaMeters = 10000;
