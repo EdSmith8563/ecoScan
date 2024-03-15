@@ -244,3 +244,10 @@ vertical-align: top;
 .signup-link {
     text-decoration: underline;
 }
+.error-message {
+    font-size: 1rem; /* Adjust the font size here */
+}
+.alert-primary{
+    background-color: #000436;
+    color: white;
+}

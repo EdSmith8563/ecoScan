@@ -10,15 +10,15 @@
       <form method="post" class="needs-validation mt-5">
         {% csrf_token %}
         {% for field in form %}
-          <div class="form-group mt-2">
+          <div class="form-group mt-2 {% if field.errors %}has-error{% endif %}">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" required>
+            <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control {% if field.errors %}is-invalid{% endif %}" required>
             <small class="form-text text-muted w-100">{{ field.help_text }}</small>
-            {% if field.errors %}
-              <div class="invalid-feedback">
-                {{ field.errors }}
+            {% for error in field.errors %}
+              <div class="invalid-feedback error-message">
+                {{ error }}
               </div>
-            {% endif %}
+            {% endfor %}
           </div>
         {% endfor %}
         <div class="form-group d-flex align-items-center">

@@ -16,8 +16,17 @@
         <!-- Include Navbar -->
         {% include 'navbar.html' %}
     </header>
-
     <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-primary alert-dismissible fade show" color="white" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="text-container">
             <div class="welcome-text">
                 {% block content %}
