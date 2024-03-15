@@ -64,7 +64,9 @@
                         <thead>
                             <tr>
                                 <th>Username</th>
-                                <th>Total Locations Discovered</th>
+                                <th>Level</th> 
+                                <th>Rank</th>
+                                <th>Locations Discovered</th>
                                 <th>Total Points</th>
                             </tr>
                         </thead>
@@ -72,6 +74,10 @@
                             {% for profile in leaderboard %}
                             <tr class="{% if user.is_authenticated and profile.user == user %}lighter-row{% endif %}">
                                 <td>{{ profile.user.username }}</td>
+                                <td>{{ profile.level }}</td>
+                                <td>
+                                    <img src="{% static 'accounts/rank_image/'|add:profile.rank_image %}" alt="Rank" class="rank-icon">
+                                </td>
                                 <td>{{ profile.total_locations_discovered }}</td>
                                 <td>{{ profile.total_points }}</td>
                             </tr>

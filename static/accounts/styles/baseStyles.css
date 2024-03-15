@@ -170,6 +170,12 @@ vertical-align: top;
     .register-text{
         font-size: 70%;
     }
+    .table td {
+        font-size: 100%;
+    }
+    .table th {
+        font-size: 80%;
+    }
   }
 
   /* Settings Dropdown Menu Styles */
