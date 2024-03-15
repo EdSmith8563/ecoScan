@@ -10,5 +10,6 @@ urlpatterns = [
     path('signup/GDPR/', views.gdpr_sigup_view, name='GDPR'),
     path('signup/termsandconditions/', views.term_sigup_view, name='T&C'),
     path('', views.home, name='home'),
-    path('update-theme/', views.update_theme_preference, name='update_theme_preference')
+    path('update-theme/', views.update_theme_preference, name='update_theme_preference'),
+    path('user/<int:user_id>/locations/', views.get_user_locations, name='user_locations')
 ]

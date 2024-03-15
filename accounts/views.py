@@ -69,3 +69,17 @@ def update_theme_preference(request):
     profile.save()
     
     return JsonResponse({'status': 'success'})
+
+@login_required
+def get_user_locations(request, user_id):
+    # Ensure the user requesting the data is the one logged in or an admin (optional)
+    if request.user.id != user_id and not request.user.is_staff:
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+
+    try:
+        user_profile = UserProfile.objects.get(user__id=user_id)
+        locations = UserLocation.objects.filter(user=user_profile).values('location__name', 'questions_answered_right', 'points_obtained')
+        data = list(locations)
+        return JsonResponse(data, safe=False)
+    except UserProfile.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
