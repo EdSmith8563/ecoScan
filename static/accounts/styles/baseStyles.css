@@ -153,10 +153,22 @@ width: 40px;
 height: auto;
 vertical-align: top;
 }
+.login-text{
+    font-size: 100%;
+}
+.register-text{
+    font-size: 100%;
+}
 /* Styles for screens less than 600px wide */
 @media (max-width: 600px) {
     .rank-icon {
       width: 40px; 
+    }
+    .login-text{
+        font-size: 50%;
+    }
+    .register-text{
+        font-size: 70%;
     }
   }
 
