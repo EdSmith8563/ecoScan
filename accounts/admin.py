@@ -5,7 +5,7 @@ admin.site.register(UserAchievement)
 
 # Custom admin class for the UserProfile model
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'total_points', 'display_level')
+    list_display = ('user', 'total_points', 'display_level', 'theme_preference')
 
     def display_level(self, obj):
         return obj.level()

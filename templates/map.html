@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'map/styles/mapStyles.css' %}"> 
 
 </head>
-<body>
+<body class="{% if request.user.is_authenticated %}{% if request.user.profile.theme_preference == 'light' %}light-mode{% endif %}{% endif %}">
     <header>
                 {% include 'navbar.html' %}
     </header>

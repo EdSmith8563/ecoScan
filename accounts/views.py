@@ -8,6 +8,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib import messages 
 from django.contrib.auth import login
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+
 
 # A view function that renders the GDPR information page
 def gdpr_sigup_view(request):
@@ -52,3 +57,15 @@ class SignUpView(generic.CreateView):
         login(self.request, user)
         messages.success(self.request, f'Congratulations {user.username}, your account has been created!')
         return response
+@login_required
+@require_POST
+def update_theme_preference(request):
+    # Get the new theme preference from the request
+    new_theme = request.POST.get('theme_preference')
+    
+    # Update the user's UserProfile
+    profile = request.user.profile
+    profile.theme_preference = new_theme
+    profile.save()
+    
+    return JsonResponse({'status': 'success'})

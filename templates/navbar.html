@@ -82,6 +82,25 @@
             event.stopPropagation(); // Prevent event propagation
             $('body').toggleClass('light-mode');
             $('.dropdown-menu').toggleClass('dropdown-menu-light');
+
+            // Determine the new theme
+            var newTheme = $('body').hasClass('light-mode') ? 'light' : 'dark';
+
+            // AJAX call to update the theme in the user's profile
+            $.ajax({
+                url: '/update-theme/', // URL to Django view that will handle this request
+                type: 'POST',
+                data: {
+                    'theme_preference': newTheme,
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(), // CSRF token for Django
+                },
+                success: function(response) {
+                    console.log('Theme updated successfully');
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log('Error updating theme: ' + errmsg);
+                }
+            });
         });
         
         // Event listener to prevent dropdown menu from closing when clicking inside the dropdown

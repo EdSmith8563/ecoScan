@@ -4,10 +4,13 @@ from map.models import Location
 
 # Defines a UserProfile model that extends models.Model
 class UserProfile(models.Model):
+    THEME_CHOICES = (
+        ('light', 'Light'),
+        ('dark', 'Dark'),
+    )
+    theme_preference = models.CharField(max_length=5, choices=THEME_CHOICES, default='dark')
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     total_points = models.IntegerField(default=0)
-    def __str__(self):
-        return self.user.username
     
     # Calculates the user's level based on their total points
     def level(self):
@@ -21,6 +24,8 @@ class UserProfile(models.Model):
     def rank_image(self):
         level = self.level()
         return f'rank_{level}.png' if level <= 12 else 'rank_12.png'
+    def __str__(self):
+        return self.user.username
 
 # Defines a UserLocation model to store locations associated with a user
 class UserLocation(models.Model):

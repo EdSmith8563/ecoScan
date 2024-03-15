@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body>
+<body class="{% if request.user.is_authenticated %}{% if request.user.profile.theme_preference == 'light' %}light-mode{% endif %}{% endif %}">
     <header>
         {% include 'navbar.html' %}
     </header>

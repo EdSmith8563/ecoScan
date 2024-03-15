@@ -9,5 +9,6 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/GDPR/', views.gdpr_sigup_view, name='GDPR'),
     path('signup/termsandconditions/', views.term_sigup_view, name='T&C'),
-    path('', views.home, name='home')
+    path('', views.home, name='home'),
+    path('update-theme/', views.update_theme_preference, name='update_theme_preference')
 ]
