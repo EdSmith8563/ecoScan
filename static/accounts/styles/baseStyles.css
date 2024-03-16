@@ -263,9 +263,36 @@ vertical-align: top;
     text-decoration: underline;
 }
 .error-message {
-    font-size: 1rem; /* Adjust the font size here */
+    font-size: 1rem; 
 }
 .alert-primary{
     background-color: #000436;
     color: white;
 }
+
+
+.user-locations-modal-content {
+    background-color: #00027a; 
+    border-radius: 10px; 
+    border: 1px solid #dee2e6; 
+    box-shadow: 0px 0px 20px white;
+}
+
+.user-locations-modal-header {
+    background-color: #00027a; 
+    color: white; 
+   
+}
+
+.user-locations-modal-body {
+    padding: 0; 
+    background-color: #040404; 
+}
+.user-locations-modal-header .close {
+    color: white; 
+}
+.user-locations-modal-dialog .table {
+    width: 100%;
+    margin-bottom: 0; 
+}
+

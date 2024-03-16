@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.db.models import Count
 
 
 # A view function that renders the GDPR information page
@@ -27,7 +28,7 @@ def home(request):
     context = {}
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
-        user_quizzes = UserLocation.objects.filter(user=user_profile)
+        user_quizzes = UserLocation.objects.filter(user=user_profile).order_by('-points_obtained')
         leaderboard = UserProfile.objects.annotate(total_locations_discovered=Count('userlocation__location', distinct=True)).order_by('-total_points')
 
         context = {
@@ -49,14 +50,11 @@ class SignUpView(generic.CreateView):
     template_name = "registration/signup.html"
     def form_valid(self, form):
         response = super().form_valid(form)
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        # super().form_valid(form)  # This saves the user to the database
         user = form.instance
-        # Log the user in
         login(self.request, user)
         messages.success(self.request, f'Congratulations {user.username}, your account has been created!')
         return response
+    
 @login_required
 @require_POST
 def update_theme_preference(request):
@@ -72,7 +70,6 @@ def update_theme_preference(request):
 
 @login_required
 def get_user_locations(request, user_id):
-    # Ensure the user requesting the data is the one logged in or an admin (optional)
     if request.user.id != user_id and not request.user.is_staff:
         return JsonResponse({'error': 'Unauthorized'}, status=403)
 

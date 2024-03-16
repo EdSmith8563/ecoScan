@@ -8,7 +8,6 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/styles/baseStyles.css' %}">
-
 </head>
 
 <body class="{% if request.user.is_authenticated %}{% if request.user.profile.theme_preference == 'light' %}light-mode{% endif %}{% endif %}">
@@ -72,7 +71,7 @@
                         </thead>
                         <tbody>
                             {% for profile in leaderboard %}
-                            <tr class="{% if user.is_authenticated and profile.user == user %}lighter-row{% endif %}">
+                            <tr class="leaderboard-row" data-user-id="{{ profile.user.id }}">
                                 <td>{{ profile.user.username }}</td>
                                 <td>{{ profile.level }}</td>
                                 <td>
@@ -93,8 +92,21 @@
                   <a href="{% url 'signup' %}" class="btn btn-success">Sign Up</a>
                   {% endif %}
                   {% endblock %}
-
         </div>
+        <div class="modal fade" id="userLocationsModal" tabindex="-1" aria-labelledby="userLocationsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg user-locations-modal-dialog">
+                <div class="modal-content user-locations-modal-content">
+                  <div class="modal-header user-locations-modal-header">
+                  <h5 class="modal-title" id="userLocationsModalLabel">User Locations</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                </div>
+              </div>
+            </div>
+          </div>
     </main>
 
     <!-- Cookie Consent Banner -->
@@ -127,7 +139,57 @@
         $('#cookieConsentBanner button').on('click touchstart', function(event) {
             hideCookieBanner();
         });
-        
+        $(document).ready(function() {
+    $('.leaderboard-row').click(function() {
+        const userId = $(this).data('user-id');
+        const username = $(this).find('td:first').text();
+        $.ajax({
+            url: `/get_user_locations/${userId}`,
+            type: 'GET',
+            success: function(data) {
+                data.sort(function(a, b) {
+                    return b.points_obtained - a.points_obtained;
+                });
+                let tableContent = `
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Questions Answered Right</th>
+                                <th>Points Obtained</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+                data.forEach(function(location) {
+                    tableContent += `
+                        <tr>
+                            <td>${location.location__name}</td>
+                            <td>${location.questions_answered_right}/5</td>
+                            <td>${location.points_obtained}</td>
+                        </tr>`;
+                });
+
+                tableContent += `</tbody></table>`;
+
+                $('#userLocationsModalLabel').text(username);
+                $('#userLocationsModal .modal-body').html(tableContent);
+                $('#userLocationsModal').modal('show');
+            },
+            error: function(error) {
+                console.error("Error fetching user locations:", error);
+                $('#userLocationsModal .modal-body').html('<p>Error loading locations.</p>');
+                $('#userLocationsModal').modal('show');
+            }
+        });
+    });
+
+    $('#userLocationsModal').on('click', function(event) {
+        if (!$(event.target).closest('.modal-dialog').length) {
+            $(this).modal('hide');
+        }
+    });
+});
     </script>
 </body>
 
