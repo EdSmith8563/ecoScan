@@ -11,16 +11,24 @@ def map_view(request):
 @login_required
 def map_view(request):
     try:
-        # Access the UserProfile instance directly from the authenticated user
-        user_profile = request.user.profile 
+        user_profile = request.user.profile
+
+        completed_locations_query = UserLocation.objects.filter(
+            user=user_profile,
+            questions_answered_right__gt=0
+        ).select_related('location').values('location__name', 'points_obtained')
+
+        completed_locations = [
+            {'name': loc['location__name'], 'points': loc['points_obtained']} 
+            for loc in completed_locations_query
+        ]
         
-        completed_locations = UserLocation.objects.filter(user=user_profile, questions_answered_right__gt=0).values_list('location__name', flat=True)
-        
+        # Add the total points to the context
         context = {
-            'completed_locations': list(completed_locations),
+            'completed_locations': completed_locations,
+            'total_points': user_profile.total_points,  # Added this line
         }
         
-    # Handle cases where the UserProfile does not exist for some reason    
     except UserProfile.DoesNotExist:
         return redirect('login')
 

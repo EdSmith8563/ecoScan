@@ -27,16 +27,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %}">
                 <a class="nav-link" href="/" role="button">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'camera' %}active{% endif %}">
                 <a class="nav-link" href="/camera" role="button">Camera</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'map' %}active{% endif %}" >
                 <a class="nav-link" href="/map" role="button">Map</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'about' %}active{% endif %}">
                 <a class="nav-link" href="/about" role="button">About</a>
             </li>
             <li class="nav-item dropdown">
@@ -82,6 +82,25 @@
             event.stopPropagation(); // Prevent event propagation
             $('body').toggleClass('light-mode');
             $('.dropdown-menu').toggleClass('dropdown-menu-light');
+
+            // Determine the new theme
+            var newTheme = $('body').hasClass('light-mode') ? 'light' : 'dark';
+
+            // AJAX call to update the theme in the user's profile
+            $.ajax({
+                url: '/update-theme/', // URL to Django view that will handle this request
+                type: 'POST',
+                data: {
+                    'theme_preference': newTheme,
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(), // CSRF token for Django
+                },
+                success: function(response) {
+                    console.log('Theme updated successfully');
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log('Error updating theme: ' + errmsg);
+                }
+            });
         });
         
         // Event listener to prevent dropdown menu from closing when clicking inside the dropdown
