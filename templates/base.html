@@ -78,7 +78,7 @@
                         <tbody>
                             {% for profile in leaderboard %}
                             <tr class="leaderboard-row " data-user-id="{{ profile.user.id }}">
-                                <td>{{ profile.user.username }}</td>
+                                <td class="username-cell">{{ profile.user.username }}</td>
                                 <td>{{ profile.level }}</td>
                                 <td>
                                     <img src="{% static 'accounts/rank_image/'|add:profile.rank_image %}" alt="Rank" class="rank-icon">
@@ -146,56 +146,56 @@
             hideCookieBanner();
         });
         $(document).ready(function() {
-    $('.leaderboard-row').click(function() {
-        const userId = $(this).data('user-id');
-        const username = $(this).find('td:first').text();
-        $.ajax({
-            url: `/get_user_locations/${userId}`,
-            type: 'GET',
-            success: function(data) {
-                data.sort(function(a, b) {
-                    return b.points_obtained - a.points_obtained;
-                });
-                let tableContent = `
-                    <table class="table table-bordered">
-                        <thead>
+            $('.leaderboard-row .username-cell').click(function() {
+            const userId = $(this).closest('tr').data('user-id');
+            const username = $(this).text();
+            $.ajax({
+                url: `/get_user_locations/${userId}`,
+                type: 'GET',
+                success: function(data) {
+                    data.sort(function(a, b) {
+                        return b.points_obtained - a.points_obtained;
+                    });
+                    let tableContent = `
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Questions Answered Right</th>
+                                    <th>Points Obtained</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+                    data.forEach(function(location) {
+                        tableContent += `
                             <tr>
-                                <th>Location</th>
-                                <th>Questions Answered Right</th>
-                                <th>Points Obtained</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
+                                <td>${location.location__name}</td>
+                                <td>${location.questions_answered_right}/5</td>
+                                <td>${location.points_obtained}</td>
+                            </tr>`;
+                    });
 
-                data.forEach(function(location) {
-                    tableContent += `
-                        <tr>
-                            <td>${location.location__name}</td>
-                            <td>${location.questions_answered_right}/5</td>
-                            <td>${location.points_obtained}</td>
-                        </tr>`;
-                });
+                    tableContent += `</tbody></table>`;
 
-                tableContent += `</tbody></table>`;
+                    $('#userLocationsModalLabel').text(username);
+                    $('#userLocationsModal .modal-body').html(tableContent);
+                    $('#userLocationsModal').modal('show');
+                },
+                error: function(error) {
+                    console.error("Error fetching user locations:", error);
+                    $('#userLocationsModal .modal-body').html('<p>Error loading locations.</p>');
+                    $('#userLocationsModal').modal('show');
+                }
+            });
+        });
 
-                $('#userLocationsModalLabel').text(username);
-                $('#userLocationsModal .modal-body').html(tableContent);
-                $('#userLocationsModal').modal('show');
-            },
-            error: function(error) {
-                console.error("Error fetching user locations:", error);
-                $('#userLocationsModal .modal-body').html('<p>Error loading locations.</p>');
-                $('#userLocationsModal').modal('show');
+        $('#userLocationsModal').on('click', function(event) {
+            if (!$(event.target).closest('.modal-dialog').length) {
+                $(this).modal('hide');
             }
         });
     });
-
-    $('#userLocationsModal').on('click', function(event) {
-        if (!$(event.target).closest('.modal-dialog').length) {
-            $(this).modal('hide');
-        }
-    });
-});
     </script>
 </body>
 
