@@ -153,8 +153,8 @@ body {
     height: 4px; 
     margin-top: 10px;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #00027a, #0004ff, #00ebfc,#0004ff,#00027a ); 
-    animation: flowing 8s linear infinite; 
+    background: linear-gradient(to right, #006600, #01970b, #00ff1a,#009d0b,#006600 );
+    animation: flowing 8s linear infinite, pulseShadow 4s infinite alternate;
     background-size: 200% 100%; 
     background-position: 0% 0;
     border: none; 
@@ -164,6 +164,15 @@ body {
 @keyframes flowing {
     0% { background-position: 0% 0; }
     100% { background-position: 200% 0; }
+}
+
+@keyframes pulseShadow {
+    0% {
+        box-shadow: 0 0 30px #00f719; /* Starting state of the shadow */
+    }
+    100% {
+        box-shadow: 0 0 10px #01970b; /* End state of the shadow */
+    }
 }
 
 /* Settings Dropdown Menu Styles */

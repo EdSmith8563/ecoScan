@@ -53,18 +53,26 @@ body {
     height: 4px; 
     margin-top: 2px;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #00027a, #0004ff, #00ebfc,#0004ff,#00027a ); 
-    animation: flowing 8s linear infinite;
+    background: linear-gradient(to right, #006600, #01970b, #00ff1a,#009d0b,#006600 ); 
+    animation: flowing 8s linear infinite, pulseShadow 4s infinite alternate;
     background-size: 200% 100%;
     background-position: 0% 0; 
     border: none; 
-    box-shadow: 0 0 10px rgba(154, 154, 154, 0.467);
 }
+
 
 /* Animation keyframes for flowing effect */
 @keyframes flowing {
     0% { background-position: 0% 0; }
     100% { background-position: 200% 0; }
+}
+@keyframes pulseShadow {
+    0% {
+        box-shadow: 0 0 30px #00f719; /* Starting state of the shadow */
+    }
+    100% {
+        box-shadow: 0 0 10px #01970b; /* End state of the shadow */
+    }
 }
 
 .table-container {
@@ -102,7 +110,7 @@ body {
     position: absolute;
     left: -2px;
     top: -2px;
-    background: linear-gradient(45deg, #00027a, #0004ff, #00ebfc, #0004ff, #00027a, #0004ff, #00ebfc, #0004ff, #00027a, #0004ff);
+    background: linear-gradient(45deg,  #004800, #017c09, #00ff1a,#017c09,#004800, #017c09, #00ff1a, #017c09, #004800, #017c09);
     background-size: 400%;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
@@ -272,14 +280,14 @@ vertical-align: top;
 
 
 .user-locations-modal-content {
-    background-color: #00027a; 
+    background-color: #006600; 
     border-radius: 10px; 
     border: 1px solid #dee2e6; 
     box-shadow: 0px 0px 20px white;
 }
 
 .user-locations-modal-header {
-    background-color: #00027a; 
+    background-color: #006600; 
     color: white; 
    
 }
