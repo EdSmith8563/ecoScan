@@ -70,9 +70,6 @@ def update_theme_preference(request):
 
 @login_required
 def get_user_locations(request, user_id):
-    if request.user.id != user_id and not request.user.is_staff:
-        return JsonResponse({'error': 'Unauthorized'}, status=403)
-
     try:
         user_profile = UserProfile.objects.get(user__id=user_id)
         locations = UserLocation.objects.filter(user=user_profile).values('location__name', 'questions_answered_right', 'points_obtained')

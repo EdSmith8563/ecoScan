@@ -47,13 +47,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for quiz in user_quizzes %}
-                            <tr>
-                                <td>{{ quiz.location.name }}</td>
-                                <td>{{ quiz.questions_answered_right }}</td>
-                                <td>{{ quiz.points_obtained }}</td>
-                            </tr>
-                            {% endfor %}
+                            {% if user_quizzes %}
+                                {% for quiz in user_quizzes %}
+                                <tr>
+                                    <td>{{ quiz.location.name }}</td>
+                                    <td>{{ quiz.questions_answered_right }}</td>
+                                    <td>{{ quiz.points_obtained }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">You have no scans, start scanning now!</td>
+                                </tr>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -71,7 +77,7 @@
                         </thead>
                         <tbody>
                             {% for profile in leaderboard %}
-                            <tr class="leaderboard-row" data-user-id="{{ profile.user.id }}">
+                            <tr class="leaderboard-row " data-user-id="{{ profile.user.id }}">
                                 <td>{{ profile.user.username }}</td>
                                 <td>{{ profile.level }}</td>
                                 <td>
