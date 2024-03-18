@@ -50,6 +50,13 @@
                             <label class="custom-control-label" for="themeSwitch">Theme</label>
                         </div>
                     </a>
+                    {% if user.is_authenticated %}
+                    {% if user.email %}
+                        <a class="dropdown-item" >{{ user.email }}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{% url 'add_email' %}">Add Email</a>
+                    {% endif %}
+                {% endif %}
                 </div>
             </li>
             <!-- Authentication Links -->

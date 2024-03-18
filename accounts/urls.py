@@ -13,4 +13,5 @@ urlpatterns = [
     path('update-theme/', views.update_theme_preference, name='update_theme_preference'),
     path('user/<int:user_id>/locations/', views.get_user_locations, name='user_locations'),
     path('get_user_locations/<int:user_id>/', views.get_user_locations, name='get_user_locations'),
+    path('add-email/', views.add_email_view, name='add_email')
 ]
