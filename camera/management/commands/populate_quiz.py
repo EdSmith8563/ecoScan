@@ -54,7 +54,6 @@ class Command(BaseCommand):
                             {"text": "Biogas digesters and composting toilets", "is_correct": False}
                         ]
                     }
-                    # Additional questions for the first quiz
                 ]
             },
             {
@@ -308,9 +307,307 @@ class Command(BaseCommand):
                         ]
                     }
                 ]
+            },
+            {
+                "title": "Taddiforde Valley",
+                "questions": [
+                    {
+                        "text": "What was the primary purpose behind the creation of the watercourse and series of ponds in Taddiforde Valley?",
+                        "answers": [
+                            {"text": "To provide recreational activities for visitors", "is_correct": False},
+                            {"text": "To create diverse habitats and support local biodiversity", "is_correct": True},
+                            {"text": "To study water flow dynamics in man-made environments", "is_correct": False},
+                            {"text": "To generate hydroelectric power", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "How does the large pond at Taddiforde Valley contribute to bird conservation efforts?",
+                        "answers": [
+                            {"text": "By providing artificially heated water sources", "is_correct": False},
+                            {"text": "By using drones to monitor bird populations", "is_correct": False},
+                            {"text": "By leaving fallen branches for roosting points", "is_correct": True},
+                            {"text": "By importing exotic birds to increase diversity", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Which of the following species benefits from the habitat piles left in wooded areas of Taddiforde Valley?",
+                        "answers": [
+                            {"text": "Domestic cats", "is_correct": False},
+                            {"text": "Dormice, hedgehogs, and water voles", "is_correct": True},
+                            {"text": "Rabbits and squirrels", "is_correct": False},
+                            {"text": "Coyotes", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What makes the plant life in the watercourses of Taddiforde Valley notable for conservation?",
+                        "answers": [
+                            {"text": "Exotic plants imported from tropical regions", "is_correct": False},
+                            {"text": "Artificially engineered super-plants", "is_correct": False},
+                            {"text": "Plants genetically modified to require less water", "is_correct": False},
+                            {"text": "Rare plant species such as lesser water parsnip", "is_correct": True}
+                        ]
+                    },
+                    {
+                        "text": "Which of the following best describes the management approach used for the large pond at Taddiforde Valley?",
+                        "answers": [
+                            {"text": "High-intensity management with regular chemical treatments", "is_correct": False},
+                            {"text": "Sympathetic management, leaving natural elements like fallen branches", "is_correct": True},
+                            {"text": "Complete removal of all natural debris to improve water clarity", "is_correct": False},
+                            {"text": "Use of artificial structures to replace natural habitats", "is_correct": False}
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Pine Tree Belt",
+                "questions": [
+                    {
+                        "text": "What role do sloe berries and brambles/blackberries play in the Pine Tree Belt ecosystem?",
+                        "answers": [
+                            {"text": "They are primarily used for human consumption", "is_correct": False},
+                            {"text": "They act as decorative plants to enhance the aesthetic value of the area", "is_correct": False},
+                            {"text": "They provide food sources for a range of mammal species", "is_correct": True},
+                            {"text": "They are toxic to most animal species and are used to control pest populations", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Which group of insects is particularly attracted to the Pine Tree Belt during early Spring?",
+                        "answers": [
+                            {"text": "Locusts and cicadas seeking warmth", "is_correct": False},
+                            {"text": "Solitary bees and bumblebees visiting flowers for nectar and pollen", "is_correct": True},
+                            {"text": "Moths and butterflies migrating through the area", "is_correct": False},
+                            {"text": "Aphids and leafhoppers feeding on sap", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "How does the steep bank to the rear of the Harrison Building contribute to the biodiversity of the Pine Tree Belt area?",
+                        "answers": [
+                            {"text": "By serving as a sunbathing area for reptiles", "is_correct": False},
+                            {"text": "Through minimal management, encouraging rough grass and scrub species", "is_correct": True},
+                            {"text": "By being a designated feeding area for herbivorous mammals", "is_correct": False},
+                            {"text": "By hosting competitive insect-eating contests", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What is the significance of the Wild Conifer Collection within the Pine Tree Belt area?",
+                        "answers": [
+                            {"text": "It is primarily for decorative purposes to attract tourists", "is_correct": False},
+                            {"text": "It serves as a Christmas tree supply for the local community", "is_correct": False},
+                            {"text": "Part of an international research project on trees from wild seeds", "is_correct": True},
+                            {"text": "To test the commercial viability of various conifer species", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Which bird species is NOT mentioned as visitors or residents of the Pine Tree Belt?",
+                        "answers": [
+                            {"text": "Sparrow", "is_correct": True},
+                            {"text": "Blue Tit", "is_correct": False},
+                            {"text": "Robin", "is_correct": False},
+                            {"text": "Wren", "is_correct": False}
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Field above Car Park B",
+                "questions": [
+                    {
+                        "text": "What is the purpose of the Devon Bank that surrounds one side of the Field above Car Park B?",
+                        "answers": [
+                            {"text": "To serve as a natural boundary that enhances security for the surrounding wildlife", "is_correct": False},
+                            {"text": "For aesthetic appeal and to increase the property value", "is_correct": False},
+                            {"text": "To reduce noise pollution from nearby roads", "is_correct": False},
+                            {"text": "To provide habitat for native hedgerow species, promoting biodiversity", "is_correct": True}
+                        ]
+                    },
+                    {
+                        "text": "What sustainability practice is applied in the Field above Car Park B with regards to green waste?",
+                        "answers": [
+                            {"text": "It is incinerated to generate power", "is_correct": False},
+                            {"text": "Recycled as mulch and soil improver under an Environment Agency licence", "is_correct": True},
+                            {"text": "Shipped off-site for disposal in landfill", "is_correct": False},
+                            {"text": "Used to create sculptures and decorative elements", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What is a key feature of the Exeter Community Garden developed in the Field above Car Park B?",
+                        "answers": [
+                            {"text": "It hosts a large-scale composting facility", "is_correct": False},
+                            {"text": "Includes raised production beds, an orchard, and a bee hive", "is_correct": True},
+                            {"text": "It is a research area for genetically modified crops", "is_correct": False},
+                            {"text": "Focuses solely on the cultivation of ornamental plants", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "How does the Exeter Community Garden promote biodiversity?",
+                        "answers": [
+                            {"text": "Via sustainable growing practices and providing habitats like bee hives", "is_correct": True},
+                            {"text": "By using pesticides to ensure high yield crops", "is_correct": False},
+                            {"text": "By planting a single crop type to increase efficiency", "is_correct": False},
+                            {"text": "Through weekly biodiversity awareness events", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What role does the orchard in the Exeter Community Garden play?",
+                        "answers": [
+                            {"text": "It's primarily used for commercial fruit production", "is_correct": False},
+                            {"text": "Serves as an educational tool for sustainable agriculture practices", "is_correct": True},
+                            {"text": "It's a genetic modification testing site for new fruit varieties", "is_correct": False},
+                            {"text": "Used for recreational purposes by staff and students of the University", "is_correct": False}
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Laver Pond",
+                "questions": [
+                    {
+                        "text": "Why was Laver Pond introduced on campus?",
+                        "answers": [
+                            {"text": "To provide recreational water sports facilities", "is_correct": False},
+                            {"text": "To create a natural habitat exclusively for exotic plant species to thrive", "is_correct": False},
+                            {"text": "So that buildings integrate with the landscape rather than dominating it", "is_correct": True},
+                            {"text": "For the collection and storage of rainwater for irrigation purposes", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "How does the design of the Living Systems Institute research building complement Laver Pond?",
+                        "answers": [
+                            {"text": "By using reflective materials to mirror the pond's surface", "is_correct": False},
+                            {"text": "Through high-rise construction that overlooks the pond", "is_correct": False},
+                            {"text": "Inclusion of wildflower planting to blend with the existing landscape", "is_correct": True},
+                            {"text": "Utilizing underwater laboratories accessible by diving", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Which of the following plant species is NOT mentioned as part of Laver Pond's habitat?",
+                        "answers": [
+                            {"text": "Maple Trees", "is_correct": True},
+                            {"text": "Bulrush", "is_correct": False},
+                            {"text": "Flag Irises", "is_correct": False},
+                            {"text": "Pond Lilies", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What role do the water boatmen and back-swimmers play in Laver Pond's ecosystem?",
+                        "answers": [
+                            {"text": "They primarily feed on algae, keeping the water clear", "is_correct": False},
+                            {"text": "Contribute to the pond's biodiversity as part of the aquatic food web", "is_correct": True},
+                            {"text": "They are used to control the mosquito population", "is_correct": False},
+                            {"text": "Decorative purposes to enhance the visual appeal of the pond", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Which bird species mentioned is known for its ability to climb tree trunks in Laver Pond's vicinity?",
+                        "answers": [
+                            {"text": "The Great Spotted Woodpecker", "is_correct": True},
+                            {"text": "The Kingfisher", "is_correct": False},
+                            {"text": "The Sparrowhawk", "is_correct": False},
+                            {"text": "The Barn Owl", "is_correct": False}
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Plantation",
+                "questions": [
+                    {
+                        "text": "What characteristic feature is noted about the Eucalyptus species found in the Plantation?",
+                        "answers": [
+                            {"text": "They exude an aromatic resin with a characteristic astringent odour", "is_correct": True},
+                            {"text": "They change color with the seasons", "is_correct": False},
+                            {"text": "They are the tallest trees in the Plantation", "is_correct": False},
+                            {"text": "They bloom year-round, providing constant color to the surroundings", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What is the primary purpose of the bug hotel located close to the pond in the Plantation?",
+                        "answers": [
+                            {"text": "To serve as a research facility for entomologists", "is_correct": False},
+                            {"text": "To attract tourists to the area", "is_correct": False},
+                            {"text": "To provide a habitat for invertebrates and overwintering insects", "is_correct": True},
+                            {"text": "To control the population of pests in the Plantation", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Which of the following plant groups is NOT mentioned as part of the Plantation's flora?",
+                        "answers": [
+                            {"text": "Cacti", "is_correct": True},
+                            {"text": "Bamboo", "is_correct": False},
+                            {"text": "Camellia", "is_correct": False},
+                            {"text": "Rhododendron", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What role does the watercourse in the Plantation play for its wildlife?",
+                        "answers": [
+                            {"text": "It is primarily used for human water sports", "is_correct": False},
+                            {"text": "Habitats for amphibians, small mammals, and a variety of bird species", "is_correct": True},
+                            {"text": "Acts as a barrier to prevent the spread of invasive plant species", "is_correct": False},
+                            {"text": "It is artificially colored to enhance aesthetic appeal", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Why are exotic plants like Bamboo, Camellia, and Rhododendron included in the Plantation's design?",
+                        "answers": [
+                            {"text": "To promote the growth of local plants and support wildlife", "is_correct": False},
+                            {"text": "For their ability to adapt and thrive in the local climate", "is_correct": False},
+                            {"text": "To test their potential as cash crops for the local economy", "is_correct": False},
+                            {"text": "To add to the diversity and enrich the habitat's biodiversity", "is_correct": True}
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Poole Gate",
+                "questions": [
+                    {
+                        "text": "What is the significance of the wildflower roof on top of the Mood Disorder Centre near Poole Gate?",
+                        "answers": [
+                            {"text": "It's primarily for aesthetic purposes to improve building appearances", "is_correct": False},
+                            {"text": "Creates a habitat for pollen and nectar-dependent species", "is_correct": True},
+                            {"text": "To reduce heating and cooling costs for the building", "is_correct": False},
+                            {"text": "It serves as a recreational area for patients and staff", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "Why are purple crocus planted at the banking near Washington Singer?",
+                        "answers": [
+                            {"text": "To provide a colorful display during spring", "is_correct": False},
+                            {"text": "To attract an endangered specific species of butterfly for study", "is_correct": False},
+                            {"text": "Purple is the University's official color", "is_correct": False},
+                            {"text": "As part of a local initiative to raise funds for Polio eradication", "is_correct": True}
+                        ]
+                    },
+                    {
+                        "text": "What historical investment significantly contributed to the establishment of Reed Arboretum?",
+                        "answers": [
+                            {"text": "A government grant of £20,000 for educational development", "is_correct": False},
+                            {"text": "A donation from East Indian Merchantman, Richard Thornton West", "is_correct": True},
+                            {"text": "Funding from a private botanical research foundation", "is_correct": False},
+                            {"text": "Crowdfunding by the local community", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "What role do the cherry trees near Washington Singer play in the ecosystem?",
+                        "answers": [
+                            {"text": "They are purely ornamental, with no impact on the local ecosystem", "is_correct": False},
+                            {"text": "They produce early season flowers, providing a welcome and food for pollinators", "is_correct": True},
+                            {"text": "Their deep roots help stabilize the soil, preventing erosion", "is_correct": False},
+                            {"text": "They are a source of timber for sustainable campus construction projects", "is_correct": False}
+                        ]
+                    },
+                    {
+                        "text": "How does the original Old Botanic Garden contribute to the campus's botanical diversity?",
+                        "answers": [
+                            {"text": "Through its collection of exotic species such as Acea and Californian Nutmeg", "is_correct": True},
+                            {"text": "By serving as a repository for endangered plant species", "is_correct": False},
+                            {"text": "It is used for the cultivation of vegetables and fruits for the campus cafeteria", "is_correct": False},
+                            {"text": "Hosting annual flower shows to fund campus greening initiatives", "is_correct": False}
+                        ]
+                    }
+                ]
             }
-
-
         ]
 
         for quiz_data in quizzes_data:
