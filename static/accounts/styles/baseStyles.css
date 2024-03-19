@@ -68,7 +68,7 @@ body {
 }
 @keyframes pulseShadow {
     0% {
-        box-shadow: 0 0 30px #00f719; /* Starting state of the shadow */
+        box-shadow: 0 0 20px #00f719; /* Starting state of the shadow */
     }
     100% {
         box-shadow: 0 0 10px #01970b; /* End state of the shadow */
@@ -79,6 +79,7 @@ body {
     margin-top: 20px; 
     padding: 0 20px; 
     overflow-y: auto; 
+    flex: 1;
 }
 .table {
     position: relative; 
@@ -92,6 +93,9 @@ body {
     vertical-align: middle;
     text-shadow: 0 1px 0 #000;
     font-size: large;
+  
+
+
 }
 .table th {
     border-radius: 4px;
@@ -147,6 +151,34 @@ body {
 .table:after {
     filter: blur(20px); 
 }
+.username-cell {
+    display:flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 10px; 
+    border-right: none!important;
+    border-left: none!important;
+}
+
+.username-text {
+    margin-right: 0; 
+    flex-grow: 1; 
+    text-align: left; 
+}
+
+.rank-icon-leaderboard {
+    width: 40px;
+    height: auto;
+    display: inline;
+    vertical-align: middle;
+    margin-left: auto;
+}
+.username-header{
+    text-align: left!important; 
+}
+.location-name{
+    text-align: left!important; 
+}
 
 /* CSS for the phone icon */
 .phone-icon {
@@ -183,6 +215,16 @@ vertical-align: top;
     }
     .table th {
         font-size: 80%;
+        vertical-align: middle!important;
+    }
+    .rank-icon-leaderboard {
+        width: 30px!important;
+    }
+    .username-cell {
+        font-size: small!important;
+    }
+    .welcome-text {
+        font-size: 2.5rem; 
     }
   }
 
@@ -280,14 +322,14 @@ vertical-align: top;
 
 
 .user-locations-modal-content {
-    background-color: #006600; 
+    background-color: #003600; 
     border-radius: 10px; 
     border: 1px solid #dee2e6; 
     box-shadow: 0px 0px 20px white;
 }
 
 .user-locations-modal-header {
-    background-color: #006600; 
+    background-color: #003600; 
     color: white; 
    
 }
@@ -303,4 +345,5 @@ vertical-align: top;
     width: 100%;
     margin-bottom: 0; 
 }
+
 

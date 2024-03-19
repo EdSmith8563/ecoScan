@@ -41,7 +41,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Location Names</th>
+                                <th class="location-name">Location Name</th>
                                 <th>Questions Answered Right</th>
                                 <th>Points Obtained</th>
                             </tr>
@@ -50,8 +50,8 @@
                             {% if user_quizzes %}
                                 {% for quiz in user_quizzes %}
                                 <tr>
-                                    <td>{{ quiz.location.name }}</td>
-                                    <td>{{ quiz.questions_answered_right }}</td>
+                                    <td class="location-name">{{ quiz.location.name }}</td>
+                                    <td>{{ quiz.questions_answered_right }}/5</td>
                                     <td>{{ quiz.points_obtained }}</td>
                                 </tr>
                                 {% endfor %}
@@ -68,23 +68,24 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Username</th>
+                                <th class="username-header">Username</th>
                                 <th>Level</th> 
-                                <th>Rank</th>
-                                <th>Locations Discovered</th>
-                                <th>Total Points</th>
+                                <th>Locations</th>
+                                <th>Points</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for profile in leaderboard %}
-                            <tr class="leaderboard-row " data-user-id="{{ profile.user.id }}">
-                                <td class="username-cell">{{ profile.user.username }}</td>
-                                <td>{{ profile.level }}</td>
-                                <td>
-                                    <img src="{% static 'accounts/rank_image/'|add:profile.rank_image %}" alt="Rank" class="rank-icon">
+                            <tr class="leaderboard-row {% if profile.user.username == user.username %}lighter-row{% endif %}" data-user-id="{{ profile.user.id }}">
+                                <td class="username-cell">
+                                    <span class="username-text">{{ profile.user.username }}</span>
+                                    <img src="{% static 'accounts/rank_image/'|add:profile.rank_image %}" alt="Rank" class="rank-icon-leaderboard">
                                 </td>
-                                <td>{{ profile.total_locations_discovered }}</td>
-                                <td>{{ profile.total_points }}</td>
+                                <td class="level-cell">
+                                    <span class="level-text">{{ profile.level }}</span>
+                                </td>
+                                <td class="location-cell">{{ profile.total_locations_discovered }}</td>
+                                <td class="points-cell">{{ profile.total_points }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -153,9 +154,6 @@
                 url: `/get_user_locations/${userId}`,
                 type: 'GET',
                 success: function(data) {
-                    data.sort(function(a, b) {
-                        return b.points_obtained - a.points_obtained;
-                    });
                     let tableContent = `
                         <table class="table table-bordered">
                             <thead>
@@ -167,17 +165,30 @@
                             </thead>
                             <tbody>`;
 
-                    data.forEach(function(location) {
+                    // Add content to the table body based on the presence of data
+                    if (data.length === 0) {
+                        // User has not discovered any locations
                         tableContent += `
                             <tr>
-                                <td>${location.location__name}</td>
-                                <td>${location.questions_answered_right}/5</td>
-                                <td>${location.points_obtained}</td>
+                                <td colspan="3">User has not discovered any locations yet</td>
                             </tr>`;
-                    });
+                    } else {
+                        // Sort and display the locations
+                        data.sort(function(a, b) {
+                            return b.points_obtained - a.points_obtained;
+                        });
+                        data.forEach(function(location) {
+                            tableContent += `
+                                <tr>
+                                    <td>${location.location__name}</td>
+                                    <td>${location.questions_answered_right}/5</td>
+                                    <td>${location.points_obtained}</td>
+                                </tr>`;
+                        });
+                    }
 
+                    // Close the table tag
                     tableContent += `</tbody></table>`;
-
                     $('#userLocationsModalLabel').text(username);
                     $('#userLocationsModal .modal-body').html(tableContent);
                     $('#userLocationsModal').modal('show');

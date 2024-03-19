@@ -26,7 +26,7 @@ def map_view(request):
         # Add the total points to the context
         context = {
             'completed_locations': completed_locations,
-            'total_points': user_profile.total_points,  # Added this line
+            'total_points': user_profile.total_points,  
         }
         
     except UserProfile.DoesNotExist:
