@@ -11,3 +11,6 @@ class CustomAuthenticationForm(AuthenticationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'password']
+        
+class AddEmailForm(forms.Form):
+    email = forms.EmailField(label="Email", required=True)

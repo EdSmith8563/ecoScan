@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.db.models import Count
@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.db.models import Count
+from .forms import AddEmailForm
 
 
 # A view function that renders the GDPR information page
@@ -77,3 +78,16 @@ def get_user_locations(request, user_id):
         return JsonResponse(data, safe=False)
     except UserProfile.DoesNotExist:
         return JsonResponse({'error': 'User not found'}, status=404)
+    
+@login_required
+def add_email_view(request):
+    if request.method == 'POST':
+        form = AddEmailForm(request.POST)
+        if form.is_valid():
+            request.user.email = form.cleaned_data['email']
+            request.user.save()
+            messages.success(request, 'Email added successfully!')
+            return redirect('home')  # Redirect as appropriate
+    else:
+        form = AddEmailForm()
+    return render(request, 'add_email.html', {'form': form})

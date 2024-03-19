@@ -109,17 +109,10 @@ def quiz_submit(request):
         )
 
         if not created:
-            previous_points = user_location.points_obtained
-            points_difference = points_for_this_quiz - previous_points
+            # Update points_obtained and questions_answered_right
             user_location.points_obtained = points_for_this_quiz
             user_location.questions_answered_right = questions_answered_right
             user_location.save()
-        else:
-            points_difference = points_for_this_quiz
-
-        # Update points in UserProfile, considering the points difference
-        user_profile.total_points = F('total_points') + points_difference
-        user_profile.save()
 
         return redirect('quiz_success')
     else:
