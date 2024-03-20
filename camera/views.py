@@ -50,7 +50,7 @@ def quiz8(request):
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
 @login_required
 def quiz9(request):
-    quiz = get_object_or_404(Quiz, title='Field above Car Park B')
+    quiz = get_object_or_404(Quiz, title='Field Above Car Park B')
     request.session['quiz_title'] = quiz.title
     return render(request, 'quiz/quiz.html', {'quiz': quiz})
 @login_required
