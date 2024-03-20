@@ -1,14 +1,9 @@
 body, html {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-body, html, nav, .navbar-brand, .navbar-nav, .nav-link, .container, h1, h2, h3, h4, h5, h6, p, li {
-    font-family: Arial, sans-serif !important;
-}
-.navbar.cut-off-left {
-    margin-left: 25%; 
-}
 .navbar {
     visibility: hidden; 
     opacity: 0; 
@@ -57,7 +52,6 @@ body {
     height: 100vh; 
     padding: 0;
     color: white;
-    font-family: Arial, sans-serif;
     box-sizing: border-box; 
     text-align: center;
     z-index: 1000;
@@ -105,8 +99,7 @@ body {
 }
 #discovered-places-container {
     display: table;
-    width: 100%; /* Adjust this as needed */
-    /* Other styles as necessary */
+    width: 100%; 
 }
 
 .image-column img {
@@ -202,11 +195,7 @@ body {
 .navbar {
     background-color: #272727; 
 }
-/* Ensure navbar links do not change color in light mode */
-.navbar .nav-link,
-.navbar .navbar-brand {
-    color: #ffffff; 
-}
+
 .light-mode #text-container, 
 .light-mode #text-container * {
     background-color: #ffffff;
@@ -220,10 +209,7 @@ body {
     background-color: #ffffff; 
     color: #000000;
 }
-.light-mode #text-container .rows {
-    background: #ffffff; 
-    color: #000000; 
-}
+
 .light-mode .dropdown-menu {
     background-color: #ffffff; 
     color: #000000;
