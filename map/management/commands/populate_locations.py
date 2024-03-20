@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from map.models import Location
 
+# Define a custom command to populate the database with predefined locations
 class Command(BaseCommand):
     help = 'Populates the database with predefined locations'
 
@@ -18,7 +19,6 @@ class Command(BaseCommand):
             {'location_id': '10', 'name': 'Laver Pond'},
             {'location_id': '11', 'name': 'Plantation'},
             {'location_id': '12', 'name': 'Poole Gate'},
-            # Add more locations as needed
         ]
 
         for loc in locations:

@@ -1,10 +1,12 @@
 from django.core.management.base import BaseCommand
 from camera.models import Quiz, Question, Answer
 
+# Define a custom management command to populate the database with quiz data
 class Command(BaseCommand):
     help = 'Populate database with quiz questions and answers'
 
     def handle(self, *args, **kwargs):
+        # Define a list of dictionaries containing quiz data
         quizzes_data = [
             {
                 "title": "CREWW Building",
@@ -627,4 +629,3 @@ class Command(BaseCommand):
 
             else:
                 self.stdout.write(self.style.WARNING(f'Quiz "{quiz_title}" already exists. Database not modified.'))
-

@@ -22,6 +22,7 @@ class UserProfile(models.Model):
             self.send_congratulatory_email()
         super(UserProfile, self).save(*args, **kwargs)
         
+    # Sends a congratulatory email to the user when they reach 600 points
     def send_congratulatory_email(self):
         subject = 'Congratulations on reaching 600 points!'
         message = 'Dear {},\n\nYour sustainability knowledge has truly paid off!\n\nThis email certifies you as an ecoScan Hero!\nYou have successfully discovered all sustainable locations around Streatham Campus, answering all questions correctly.\n\nKeep up the great work!\n\nRegards,\nThe EcoScan Team.'.format(self.user.username)
@@ -30,7 +31,7 @@ class UserProfile(models.Model):
         
         send_mail(subject, message, from_email, recipient_list)
     
-    # Calculates the user's level based on their total points
+    # Returns the user's level based on their total points
     def level(self):
         levels = [25, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800]
         for i, threshold in enumerate(levels, 1):
@@ -57,14 +58,6 @@ class UserLocation(models.Model):
         location_name = self.location.name
         return f"{username} - {location_name}"
         
-# Defines a UserAchievement model to store achievements that can be earned by users
-class UserAchievement(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    users = models.ManyToManyField(UserProfile, related_name='achievements')
-
-    def __str__(self):
-        return self.name
 class CustomUser(AbstractUser):
     groups = models.ManyToManyField(
         Group,
@@ -82,6 +75,8 @@ class CustomUser(AbstractUser):
         related_name="customuser_permissions", 
         related_query_name="customuser",  
     )
+
+# Signal receiver to update total_points on UserLocation save
 @receiver(post_save, sender=UserLocation)
 def update_user_points_on_save(sender, instance, **kwargs):
     user_profile = instance.user

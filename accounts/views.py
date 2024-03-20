@@ -38,6 +38,7 @@ def home(request):
         }
     return render(request, 'base.html', context)
 
+# Checks if username already exists in database
 class CustomUserCreationForm(UserCreationForm):
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -45,6 +46,7 @@ class CustomUserCreationForm(UserCreationForm):
             raise ValidationError('A user with that username already exists.')
         return username
     
+# Handles user registration using custom form
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("home")
@@ -69,6 +71,7 @@ def update_theme_preference(request):
     
     return JsonResponse({'status': 'success'})
 
+# Retrieves and returns JSON data of locations associated with a specific user
 @login_required
 def get_user_locations(request, user_id):
     try:
@@ -79,6 +82,7 @@ def get_user_locations(request, user_id):
     except UserProfile.DoesNotExist:
         return JsonResponse({'error': 'User not found'}, status=404)
     
+# Allows authenticated users to add or update their email address through a form
 @login_required
 def add_email_view(request):
     if request.method == 'POST':
@@ -87,7 +91,7 @@ def add_email_view(request):
             request.user.email = form.cleaned_data['email']
             request.user.save()
             messages.success(request, 'Email added successfully!')
-            return redirect('home')  # Redirect as appropriate
+            return redirect('home')
     else:
         form = AddEmailForm()
     return render(request, 'add_email.html', {'form': form})
