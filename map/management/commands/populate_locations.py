@@ -15,7 +15,7 @@ class Command(BaseCommand):
             {'location_id': '6', 'name': 'Wellbeing Services Facility'},
             {'location_id': '7', 'name': 'Taddiforde Valley'},
             {'location_id': '8', 'name': 'Pine Tree Belt'},
-            {'location_id': '9', 'name': 'Field above Car Park B'},
+            {'location_id': '9', 'name': 'Field Above Car Park B'},
             {'location_id': '10', 'name': 'Laver Pond'},
             {'location_id': '11', 'name': 'Plantation'},
             {'location_id': '12', 'name': 'Poole Gate'},

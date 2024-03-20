@@ -411,7 +411,7 @@ class Command(BaseCommand):
                 ]
             },
             {
-                "title": "Field above Car Park B",
+                "title": "Field Above Car Park B",
                 "questions": [
                     {
                         "text": "What is the purpose of the Devon Bank that surrounds one side of the Field above Car Park B?",
