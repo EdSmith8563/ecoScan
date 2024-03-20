@@ -1,4 +1,7 @@
-# ECM2434 Group Software Engineering project - Dev Dogs
+<img src="./static/accounts/images/banner.png" alt="EcoScan Banner" title="EcoScan Banner" width="700" height="auto">
+
+<div align="center" style="font-size:24px;" >ECM2434 Group Software Engineering
+project - Dev Dogs</div>
 
 ### Group Members:
 1. Edward Smith
