@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/styles/baseStyles.css' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/images/leaf.png' %}">
 </head>
 
 <body class="{% if request.user.is_authenticated %}{% if request.user.profile.theme_preference == 'light' %}light-mode{% endif %}{% endif %}">

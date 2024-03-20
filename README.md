@@ -1,6 +1,8 @@
-# ECM2434 Group Software Engineering project - Dev Dogs
+<img src="./static/accounts/images/banner.png" alt="EcoScan Banner" title="EcoScan Banner" width="700" height="auto">
 
-### Group Members:
+## ECM2434 Group Software Engineering project - Dev Dogs
+
+### **Group Members:**
 1. Edward Smith
 2. Nathan de Beer
 3. Sholto Bayley
@@ -48,4 +50,19 @@ GitHub Link: https://github.com/EdSmith8563/ecoScan
 
 Trello Link: https://trello.com/invite/b/abgL6Sr0/ATTIad3f6076c40f0526a0daab51af440fca50BDBB1B/dev-dogs-kanban-board
 
-
+<div align="center">
+    <img src="./static/qr/QR_quiz1.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz2.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz3.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz4.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz5.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz6.png" alt="Image 1" title="Image 1" height="120">
+</div>
+<div align="center">
+    <img src="./static/qr/QR_quiz7.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz8.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz9.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz10.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz11.png" alt="Image 1" title="Image 1" height="120">
+    <img src="./static/qr/QR_quiz12.png" alt="Image 1" title="Image 1" height="120">
+</div>
