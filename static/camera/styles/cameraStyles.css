@@ -34,6 +34,7 @@ body {
     z-index: 2; 
 }
 
+/* Media queries for different screen sizes */
 @media (min-width: 768px) {
     #video-container {
         top: 20px;
@@ -53,7 +54,6 @@ body {
         visibility: visible;
     }
 }
-
 @media (max-width: 768px) {
     #video-container {
         top: 10%;
@@ -69,6 +69,7 @@ body {
         visibility: visible;
     }
 }
+
 .light-mode {
     background-color: #ffffff; 
     color: #000000; 

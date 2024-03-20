@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from accounts.models import UserLocation, UserProfile
+
 def map_view(request):
     context = {
         'latitude': 'Exeter University latitude',
@@ -13,6 +14,7 @@ def map_view(request):
     try:
         user_profile = request.user.profile
 
+        # Query the database for locations associated with the user where questions were answered correctly
         completed_locations_query = UserLocation.objects.filter(
             user=user_profile,
             questions_answered_right__gt=0
@@ -30,6 +32,6 @@ def map_view(request):
         }
         
     except UserProfile.DoesNotExist:
-        return redirect('login')
+        return redirect('login') # If the UserProfile is not found, redirect the user to the login page
 
     return render(request, 'map.html', context)
