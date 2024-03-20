@@ -110,7 +110,7 @@ body {
     position: absolute;
     left: -2px;
     top: -2px;
-    background: linear-gradient(45deg,  #004800, #017c09, #00ff1a,#017c09,#004800, #017c09, #00ff1a, #017c09, #004800, #017c09);
+    background: linear-gradient(45deg,  #02b69c, #49d8a3, #95fcab,#49d8a3,#02b69c, #49d8a3, #95fcab, #49d8a3, #02b69c, #49d8a3);
     background-size: 400%;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
