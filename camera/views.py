@@ -112,6 +112,9 @@ def quiz_submit(request):
             user_location.questions_answered_right = questions_answered_right
             user_location.save()
 
+         # Store the user's score in the session
+        request.session['points_for_this_quiz'] = points_for_this_quiz
+
         return redirect('quiz_success')
     else:
         return HttpResponseBadRequest("Invalid request method.")
@@ -119,4 +122,7 @@ def quiz_submit(request):
 # Renders a success page after a quiz is successfully submitted
 @login_required
 def quiz_success(request):
-    return render(request, 'quiz/quiz_success.html')
+    points_for_this_quiz = request.session.get('points_for_this_quiz', 0)  # Retrieve the score
+    if 'points_for_this_quiz' in request.session:
+        del request.session['points_for_this_quiz']  # Clear the score from the session
+    return render(request, 'quiz/quiz_success.html', {'points_for_this_quiz': points_for_this_quiz})
