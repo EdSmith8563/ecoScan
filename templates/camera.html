@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'camera/styles/cameraStyles.css' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/images/leaf.png' %}">
     <style>
+        /* Inline styles for the QR code scanning title */
         #qr-title {
             position: absolute;
             top: 55px;
@@ -35,6 +36,8 @@
         <canvas id="canvas" class="canvas" hidden></canvas>
         <video id="video-element" autoplay></video>
     </div>
+    
+    <!-- JavaScript for QR code scanning functionality -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
     <script>
         const video = document.getElementById('video-element');
@@ -76,6 +79,7 @@
             autoplay: true, 
         });
     </script>
+    <!-- Necessary Scripts for Bootstrap functionality -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

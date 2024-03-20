@@ -8,27 +8,27 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'map/styles/mapStyles.css' %}"> 
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/images/leaf.png' %}">
-
 </head>
 <body class="{% if request.user.is_authenticated %}{% if request.user.profile.theme_preference == 'light' %}light-mode{% endif %}{% endif %}">
     <header>
-                {% include 'navbar.html' %}
+        {% include 'navbar.html' %}
     </header>
-
     <div id="text-container">
         <p></p>
         <h1 style="font-weight: bold; font-size: 150%;">Places Discovered</h1>
         <hr class="separator">
         <div id="discovered-places-container" data-checked-img-url="{% static 'map/images/checked.png' %}">
-            <!-- Dynamic content will be inserted here by JavaScript -->
         </div>
     </div>
     <button id="menu-icon" class="menu-icon" onclick="showNavbar()" onmouseover="showNavbar()" onmouseout="hideNavbar()"><img src="{% static 'map/images/menu.png' %}" /></button>
     <div id="map-container">
         <div id="map"></div>
     </div>
+
+    <!-- JSON data for completed locations and total points -->
     {{ completed_locations|json_script:"completedLocationsData" }}
     {{ total_points|json_script:"totalPointsData" }}
+
     <script>
         var userLocationMarker = null;
         var completedLocations = JSON.parse(document.getElementById('completedLocationsData').textContent);
@@ -55,6 +55,7 @@
             }
     
         });
+
         function updateDiscoveredPlaces(completedLocations,totalPoints) {
             var container = document.getElementById('discovered-places-container');
             var checkedImgUrl = container.getAttribute('data-checked-img-url');
@@ -82,6 +83,7 @@
 
                 container.appendChild(row);
             });
+
             var separator = document.createElement('hr');
             separator.className = 'separator';
             container.appendChild(separator);
@@ -109,23 +111,25 @@
 
             container.appendChild(totalPointsRow);
         }
-        function showNavbar() {
-        var navbar = document.querySelector('.navbar');
-        navbar.classList.add("navbar-show");
 
-        var menuIcon = document.getElementById("menu-icon");
-        menuIcon.style.visibility = "hidden"; 
-        setTimeout(function() {
-            menuIcon.style.visibility = "visible"; 
-        }, 4000);
+        function showNavbar() {
+            var navbar = document.querySelector('.navbar');
+            navbar.classList.add("navbar-show");
+
+            var menuIcon = document.getElementById("menu-icon");
+            menuIcon.style.visibility = "hidden"; 
+            setTimeout(function() {
+                menuIcon.style.visibility = "visible"; 
+            }, 8000);
         }
 
         function hideNavbar() {
             var navbar = document.querySelector('.navbar');
             setTimeout(function() {
                 navbar.classList.remove("navbar-show");
-            }, 4000);
+            }, 8000);
         }
+
         function initMap() {
             var initialZoom = window.innerWidth < 768 ? 14.5 : 15.5;
             var minZoom = 14.5; 
@@ -154,6 +158,7 @@
                 zoomControl: !onPhone
         
             });
+
             trackUserLocation(map);
          
             var streetView = map.getStreetView();
@@ -250,6 +255,7 @@
                 marker.addListener('mouseout', function() {
                     infowindow.close();
                 });
+
                 marker.addListener('click', function() {
                     if (marker.isInfowindowOpen) {
                         infowindow.close();
@@ -258,6 +264,7 @@
                     }
                     marker.isInfowindowOpen = !marker.isInfowindowOpen;
                 });
+
                 markers.push(marker);
             });
 
@@ -282,6 +289,7 @@
             var pixelSize = Math.sqrt(referenceAreaMeters / metersPerPixel);
             return pixelSize;
         }
+
         function trackUserLocation(map) {
             if (navigator.geolocation) {
                 navigator.geolocation.watchPosition(function(position) {
@@ -321,12 +329,13 @@
         }
         initMap();
     </script>
+    <!-- Necessary scripts for jQuery and Bootstrap functionality -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#themeSwitch').on('change', function(event) {
-                event.stopPropagation(); // Prevent event propagation
+                event.stopPropagation(); 
                 if ($(this).is(':checked')) {
                     $('body').removeClass('light-mode');
                     $('.dropdown-menu').removeClass('dropdown-menu-light');

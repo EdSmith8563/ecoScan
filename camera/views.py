@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from accounts.models import UserProfile, UserLocation, Location
-from django.db.models import F
 from .models import *
 from django.http import HttpResponseBadRequest
 

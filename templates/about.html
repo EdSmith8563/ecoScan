@@ -10,15 +10,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/images/leaf.png' %}">
     <style>
         .container {
-            max-width: 800px; /* Adjust this value based on your current settings */
+            max-width: 800px;
             margin: auto;
-            padding: 0 20px; /* This adds some padding on the left and right */
+            padding: 0 20px; 
         }
     </style>
 </head>
 <body class ="{% if request.user.is_authenticated %}{% if request.user.profile.theme_preference == 'light' %}light-mode{% endif %}{% endif %}">
     <header>
-        <!-- Include Navbar -->
         {% include 'navbar.html' %}
     </header>
     <div class="container">

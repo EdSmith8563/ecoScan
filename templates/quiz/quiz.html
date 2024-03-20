@@ -40,6 +40,7 @@
     <script>
         let currentQuestion = 0; 
 
+        // Function to display the current question and adjust navigation buttons
         function showQuestion(n) {
             const questions = document.querySelectorAll('.question');
             console.log(questions.length);
@@ -52,10 +53,13 @@
             document.getElementById('nextBtn').style.display = (n === questions.length - 1) ? 'none' : 'inline-block';
             document.getElementById('submitBtn').style.display = (n === questions.length - 1) ? 'inline-block' : 'none';
         }
+
+        // Function to redirect the user to the home page when they exit quiz
         function exitQuiz() {
             window.location.href = "{% url 'home' %}";
         }
 
+        // Function to change the current question by incrementing/decrementing the current question index
         function changeQuestion(step) {
             currentQuestion += step;
             showQuestion(currentQuestion);
@@ -66,6 +70,7 @@
         });
          
     </script>
+    <!-- Necessary scripts for jQuery and Bootstrap functionality -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

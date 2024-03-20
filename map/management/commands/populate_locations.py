@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from map.models import Location
 
 # Define a custom command to populate the database with predefined locations
