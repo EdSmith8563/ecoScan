@@ -17,7 +17,7 @@ EcoScan is a web-based django application that was designed to use gamification 
 ## **Website**
 https://www.ecoscan.online/
 ## **Locally**
-### Ensure quizzes and locations are populated:
+### Ensure quizzes and locations are populated (Optional):
 ```console
 python3 manage.py populate_locations
 python3 manage.py populate_quiz
@@ -108,17 +108,19 @@ QR Codes can also be found here:
     - Questions
         - Here you can view the question and the quiz parent of that question.
     - Quizs
-        - Here you can view all 12 quizes 
+        - Here you can view all 12 quizes and delete them if needed.
  - Map
-     - Location
-
+     - Locations
+        - A gamekeeper can change the location ID and add/remove locations.
+## Emailing Certificate
+If a user has an email associated with an account, change their userprofile total points to 600 (max points) and click save. That user will then recieve an email (may be in spam) congratulating them on achieving maximum points and discovering all locations.
 ## Details
 Users have to log in with a username and password to play, and can then use their camera to scan QR codes around the campus, which then lets them answer 5 questions in a quiz about that location. Users points and number of questions answered right are stored in a database and displayed in tables on the landing page. The leaderboard table allows users to compete for high scores against other players. The map page lets users see an approximate location of where the QR codes are located, however part of the game is searching for said QR codes. It also allows users to see which locations they have discoverd. 
 
-
-
-    
 ## Links
+Website Link:<br>
+https://www.ecoscan.online/
+
 GitHub Link: <br>
 https://github.com/EdSmith8563/ecoScan
 
