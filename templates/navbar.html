@@ -130,11 +130,6 @@
             $('.dropdown-menu').toggleClass('show');
         });
 
-        // Event listener to close the dropdown menu when clicking outside of it
-        $(document).on('click touchstart', function(event) {
-            $('.navbar-collapse').collapse('hide'); 
-        });
-
         // Event listener to toggle the dropdown menu when clicking the dropdown toggle
         $('.navbar-toggler').on('click touchstart', function(event) {
             event.stopPropagation(); // Prevent event propagation
