@@ -15,7 +15,6 @@ urlpatterns = [
     path('quiz10/', views.quiz10, name='quiz10'),
     path('quiz11/', views.quiz11, name='quiz11'),
     path('quiz12/', views.quiz12, name='quiz12'),
-    path('quiz1/submit/', views.quiz_submit, name='quiz_submit'),
-    path('quiz2/submit/', views.quiz_submit, name='quiz_submit'),
+    path('quiz/submit/', views.quiz_submit, name='quiz_submit'),
     path('quiz/success/', views.quiz_success, name='quiz_success'),
 ]
