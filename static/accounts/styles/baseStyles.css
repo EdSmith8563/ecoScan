@@ -318,13 +318,13 @@ vertical-align: top;
 
 /* Styles for user locations modal */
 .user-locations-modal-content {
-    background-color: #003600; 
+    background-color: #272727; 
     border-radius: 10px; 
     border: 1px solid #dee2e6; 
     box-shadow: 0px 0px 20px white;
 }
 .user-locations-modal-header {
-    background-color: #003600; 
+    background-color: #272727; 
     color: white; 
    
 }
