@@ -94,17 +94,21 @@ QR Codes can also be found here:
 35. Thank you
 # Gamekeeper Admin (Desktop):
  - Accounts
-     - User Achievements
-        - 
      - User Locations
+        - Gamekeepers can view the discovered locations of each user, they can change the points obtained at that location and the number of questions answered right. Any of these user locations can be deleted and the points obtained at the deleted lcoation will be removed from total points for that user. 
      - User profiles
+        - A UserProfile is an extension of the user model. A gamekeeper can change their total points and theme preference (level will change automatically based on points). Deleteing a user will remove their associated UserProfile.
  - Authentication and Authorization
     - Groups
     - Users
+        - A gamekeeper can modify the email address of a user and modify their staff/ superuser status.
  - Camera
     - Answers
-     - Questions
-      - Quizs
+        - Here a gamekeeper can view all answers to each questions and whether they are correct or not.
+    - Questions
+        - Here you can view the question and the quiz parent of that question.
+    - Quizs
+        - Here you can view all 12 quizes 
  - Map
      - Location
 
