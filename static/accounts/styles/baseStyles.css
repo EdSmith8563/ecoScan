@@ -53,7 +53,11 @@ body {
     height: 4px; 
     margin-top: 2px;
     margin-bottom: 20px;
+<<<<<<< HEAD
     background: linear-gradient(to right, #006600, #01970b, #00ff1a,#009d0b,#006600 );
+=======
+    background: linear-gradient(to right, #02b69c, #49d8a3, #95fcab,#49d8a3,#02b69c ); 
+>>>>>>> b195e53a236f92c7f734753b11dd48856384b107
     animation: flowing 8s linear infinite, pulseShadow 4s infinite alternate;
     background-size: 200% 100%;
     background-position: 0% 0; 
@@ -67,10 +71,10 @@ body {
 }
 @keyframes pulseShadow {
     0% {
-        box-shadow: 0 0 20px #00f719; /* Starting state of the shadow */
+        box-shadow: 0 0 20px #95fcab; /* Starting state of the shadow */
     }
     100% {
-        box-shadow: 0 0 10px #01970b; /* End state of the shadow */
+        box-shadow: 0 0 10px #49d8a3; /* End state of the shadow */
     }
 }
 
