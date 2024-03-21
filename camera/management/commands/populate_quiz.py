@@ -414,7 +414,7 @@ class Command(BaseCommand):
                 "title": "Field Above Car Park B",
                 "questions": [
                     {
-                        "text": "What is the purpose of the Devon Bank that surrounds one side of the Field above Car Park B?",
+                        "text": "What is the purpose of the Devon Bank that surrounds one side of the Field Above Car Park B?",
                         "answers": [
                             {"text": "To serve as a natural boundary that enhances security for the surrounding wildlife", "is_correct": False},
                             {"text": "For aesthetic appeal and to increase the property value", "is_correct": False},
@@ -423,7 +423,7 @@ class Command(BaseCommand):
                         ]
                     },
                     {
-                        "text": "What sustainability practice is applied in the Field above Car Park B with regards to green waste?",
+                        "text": "What sustainability practice is applied in the Field Above Car Park B with regards to green waste?",
                         "answers": [
                             {"text": "It is incinerated to generate power", "is_correct": False},
                             {"text": "Recycled as mulch and soil improver under an Environment Agency licence", "is_correct": True},
@@ -432,7 +432,7 @@ class Command(BaseCommand):
                         ]
                     },
                     {
-                        "text": "What is a key feature of the Exeter Community Garden developed in the Field above Car Park B?",
+                        "text": "What is a key feature of the Exeter Community Garden developed in the Field Above Car Park B?",
                         "answers": [
                             {"text": "It hosts a large-scale composting facility", "is_correct": False},
                             {"text": "Includes raised production beds, an orchard, and a bee hive", "is_correct": True},
