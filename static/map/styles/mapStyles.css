@@ -149,7 +149,7 @@ body {
     height: 4px; 
     margin-top: 10px;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #006600, #01970b, #00ff1a,#009d0b,#006600 );
+    background: linear-gradient(to right, #02b69c, #49d8a3, #95fcab,#49d8a3,#02b69c );
     animation: flowing 8s linear infinite, pulseShadow 4s infinite alternate;
     background-size: 200% 100%; 
     background-position: 0% 0;
