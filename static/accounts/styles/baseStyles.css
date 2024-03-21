@@ -110,7 +110,7 @@ body {
     position: absolute;
     left: -2px;
     top: -2px;
-    background: linear-gradient(45deg,  #02b69c, #49d8a3, #95fcab,#49d8a3,#02b69c, #49d8a3, #95fcab, #49d8a3, #02b69c, #49d8a3);
+    background: linear-gradient(45deg,  #01382f, #49d8a3, #95fcab,#49d8a3,#058355, #01382f, #95fcab, #49d8a3, #058355, #49d8a3);
     background-size: 400%;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
@@ -318,13 +318,13 @@ vertical-align: top;
 
 /* Styles for user locations modal */
 .user-locations-modal-content {
-    background-color: #003600; 
+    background-color: #272727; 
     border-radius: 10px; 
     border: 1px solid #dee2e6; 
     box-shadow: 0px 0px 20px white;
 }
 .user-locations-modal-header {
-    background-color: #003600; 
+    background-color: #272727; 
     color: white; 
    
 }

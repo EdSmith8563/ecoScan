@@ -164,10 +164,10 @@ body {
 }
 @keyframes pulseShadow {
     0% {
-        box-shadow: 0 0 30px #00f719; /* Starting state of the shadow */
+        box-shadow: 0 0 30px #95fcab; /* Starting state of the shadow */
     }
     100% {
-        box-shadow: 0 0 10px #01970b; /* End state of the shadow */
+        box-shadow: 0 0 10px #49d8a3; /* End state of the shadow */
     }
 }
 
