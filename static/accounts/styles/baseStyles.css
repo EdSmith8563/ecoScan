@@ -53,11 +53,7 @@ body {
     height: 4px; 
     margin-top: 2px;
     margin-bottom: 20px;
-<<<<<<< HEAD
-    background: linear-gradient(to right, #006600, #01970b, #00ff1a,#009d0b,#006600 );
-=======
     background: linear-gradient(to right, #02b69c, #49d8a3, #95fcab,#49d8a3,#02b69c ); 
->>>>>>> b195e53a236f92c7f734753b11dd48856384b107
     animation: flowing 8s linear infinite, pulseShadow 4s infinite alternate;
     background-size: 200% 100%;
     background-position: 0% 0; 
@@ -114,7 +110,7 @@ body {
     position: absolute;
     left: -2px;
     top: -2px;
-    background: linear-gradient(45deg,  #004800, #017c09, #00ff1a,#017c09,#004800, #017c09, #00ff1a, #017c09, #004800, #017c09);
+    background: linear-gradient(45deg,  #01382f, #49d8a3, #95fcab,#49d8a3,#058355, #01382f, #95fcab, #49d8a3, #058355, #49d8a3);
     background-size: 400%;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
